@@ -10,16 +10,17 @@ router.post("/signup", (req,res)=>{
         const name = req.body.name;
         const email = req.body.email;
         const password = req.body.password;
-        const insertUserQuery = "INSERT INTO users (user_name, user_email, user_password) VALUES (?,?,?)";
+        const role = req.body.role;
+        const insertUserQuery = "INSERT INTO users (user_name, user_email, user_password, user_role) VALUES (?,?,?, ?)";
         console.log("Inside API Signup");
         bcrypt.hash(password, saltRounds ).then(function (hash) {
-            pool.query(insertUserQuery, [name, email, hash], (err,result)=>{
+            pool.query(insertUserQuery, [name, email, hash, role], (err,result)=>{
                 if(err){
                     if(err.code=="ER_DUP_ENTRY"){
                         res.status(409).json({message:"User already exists!"});
                     }
                 }else{
-                    res.status(200).json({name: name, email: email});
+                    res.status(200).json({name: name, email: email, role: role});
                 }
             })
         })
