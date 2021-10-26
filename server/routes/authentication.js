@@ -25,8 +25,60 @@ router.post("/signup", (req,res)=>{
             })
         })
         console.log("Successful registeration of the customer");
-        //res.status(200).send("Successful registration of customer");
+    
+    //res.status(200).send("Successful registration of customer");
     
 });
+
+router.post("/login", (req,res)=>{
+    
+    console.log(req.body);  
+        
+        console.log("In login api");
+        const email = req.body.email;
+        const password = req.body.password;
+        const role = req.body.role;
+        const loginQuery = "select user_name,user_email,user_password,user_role from users where user_email=?";
+        
+
+        console.log("heyy");
+        pool.query(loginQuery, [email], (err, result) => {
+            if (err) {
+              throw err;
+            } else {
+              console.log("Inside Login Else");
+              console.log(result);
+              console.log(result.length);
+              if (result.length > 0) {
+                  console.log(typeof result);
+                console.log(result[0].user_password);
+                const validPassword =  bcrypt.compare(password, result[0].user_password)
+                  .then(async function (response) {
+                                        
+                    if (response==true) {
+                      const success = {
+                        email: email,
+                        name: result[0].user_name,
+                        role: result[0].user_role
+                      };
+                          
+                      res.status(200).json({ success: success });
+                    }else{
+                      
+                    res.status(404).json({ message: "Invalid credentials!" });
+                    }
+                  })
+                  .catch((response) => {
+                    console.log("invalid cred 2nd time");
+                    res.status(404).json({ message: "Invalid Credentials" });
+                  });
+              }else{
+                res.status(404).json({ message: "User not found!" });
+              }
+            }
+          });
+    
+});
+
 
 module.exports = router;
