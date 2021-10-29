@@ -1,10 +1,10 @@
-# Airline Management System(TTeam-project-muskers)
+# Airline Management System(Team-project-muskers)
 
 # Team Members:
 1. Alihussain Ladiwala
 2. Geetika Kapil
 3. Karan Pinakinbhai Jariwala
-4. VSai Nikhil Yandamuri
+4. Sai Nikhil Yandamuri
 
 # Tools and Languages:
 MERN Stack<br/>
@@ -15,7 +15,7 @@ Database - MySQL<br/>
 
 
 # Scrum meetings schedule:
-Every  Monday and Saturdat
+Every  Monday and Saturday
 
 
 
