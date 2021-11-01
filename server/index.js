@@ -9,6 +9,7 @@ const server = http.createServer(app);
 //routes
 const signup = require("./routes/authentication");
 const login = require("./routes/authentication");
+const adminFunc = require("./routes/AdminFunc");
 
 require('dotenv').config()
 
@@ -34,3 +35,4 @@ server.listen(port, ()=>{
 
 app.use("/api",signup);
 app.use("/api",login);
+app.use("/api",adminFunc);
