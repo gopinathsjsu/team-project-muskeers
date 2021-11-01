@@ -32,4 +32,16 @@ router.post("/createFlight",(req,res)=>{
     });
 });
 
+router.post("/updateStatus",(req,res)=>{
+    const flightId = req.body.flightId;
+    const date = req.body.date;
+    const status = req.body.status;
+    const updateStatusQuery = "UPDATE flight_details SET status=? where flight_id=? and start_date=?";
+
+    pool.query(updateStatusQuery, [status, flightId, date],(err,result)=>{
+        console.log(result);
+        res.status(200).json({message: "Successfully changed the status of the flight selected"});
+    });
+});
+
 module.exports = router;
