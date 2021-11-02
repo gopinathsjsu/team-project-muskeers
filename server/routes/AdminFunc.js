@@ -19,12 +19,12 @@ router.post("/createFlight",(req,res)=>{
         const enddaysArray = endDate.split("-");
         for(let i=parseInt(startdaysArray[2]);i<=parseInt(enddaysArray[2]);i++){
             const sd = startdaysArray[0] + "-" + startdaysArray[1] + "-" + i;
-            pool.query(insertFlightDetailsQuery,[flightId,startTime,endTime,180,"$500",sd],(err,result)=>{
-                if(err){
+            pool.query(insertFlightDetailsQuery,[flightId,startTime,endTime,180,"$500",sd],(err1,result1)=>{
+                if(err1){
                     console.log(err);
                     res.status(409).json({message: "Error while creating flight"});
                 }
-                console.log(result);
+                console.log(result1);
             });
         }
         res.status(200).json({message:"Created flight between two cities"});
@@ -41,6 +41,21 @@ router.post("/updateStatus",(req,res)=>{
     pool.query(updateStatusQuery, [status, flightId, date],(err,result)=>{
         console.log(result);
         res.status(200).json({message: "Successfully changed the status of the flight selected"});
+    });
+});
+
+router.post("/deleteFlightDetails",(req,res)=>{
+    const flightId = req.body.flightId;
+
+    const deleteFligtDetailsQuery = "DELETE FROM flight_details where flight_id=?";
+    pool.query(deleteFligtDetailsQuery, [flightId], (err,result)=>{
+        console.log(err);
+        console.log(result);
+        const deleteFlightTableQuery = "DELETE FROM flight_table where flight_id=?";
+        pool.query(deleteFlightTableQuery,[flightId],(err1,result1)=>{
+            console.log(err1);
+            res.status(200).json({message: "Successful deletion of Flight for the given flight ID"});
+        });
     });
 });
 
