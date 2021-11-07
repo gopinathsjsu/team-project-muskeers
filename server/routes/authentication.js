@@ -37,7 +37,6 @@ router.post("/login", (req,res)=>{
         console.log("In login api");
         const email = req.body.email;
         const password = req.body.password;
-        const role = req.body.role;
         const loginQuery = "select user_name,user_email,user_password,user_role from users where user_email=?";
         
 
