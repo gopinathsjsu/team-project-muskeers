@@ -3,13 +3,13 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-//const router = require("./router");
 const server = http.createServer(app);
 
 //routes
 const signup = require("./routes/authentication");
 const login = require("./routes/authentication");
 const adminFunc = require("./routes/AdminFunc");
+const profile = require("./routes/Profile");
 
 require('dotenv').config()
 
@@ -36,3 +36,4 @@ server.listen(port, ()=>{
 app.use("/api",signup);
 app.use("/api",login);
 app.use("/api",adminFunc);
+app.use("/api",profile);
