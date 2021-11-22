@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Col, Row, Button, Form, Alert } from 'react-bootstrap';
+import { Col, Button, Form, Alert } from 'react-bootstrap';
 import "./Register.css"
 import endPointObj from '../../endPointObj'
 import Axios from 'axios';
@@ -12,12 +12,12 @@ function Register(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [alert, setAlert] = useState('');
+    const [role, setRole] = useState('');
 
     const history = useHistory();
 
 
     const registerUser = (e) => {
-        let role = "admin"
         console.log(name, email, password);
 
         const redirect = () => {
@@ -32,10 +32,13 @@ function Register(props) {
             Axios.post(endPointObj.url + 'signup', { name, email, password, role }).then((response) => {
                 resolve(response);
 
-                if(role === 'admin'){
+                if (role === 'admin') {
                     redirect();
                 }
-                
+                else {
+                    console.log(role)
+                }
+
 
             }).catch((e) => {
                 if (e.response && e.response.data) {
@@ -69,7 +72,28 @@ function Register(props) {
                         setPassword(e.target.value);
                     }} />
                 </Form.Group>
-                <Button variant="primary" type="submit" onClick={registerUser}>
+               
+                <Form.Check
+                    inline
+                    label="user"
+                    name="group1"
+                    type="radio"
+                    id="user"
+                    onClick={()=>{setRole("user")}}
+                />
+                <Form.Check
+                    inline
+                    label="admin"
+                    name="group1"
+                    type="radio"
+                    id="admin"
+                    onClick={()=>{setRole("admin")}}
+                />
+                <br/>
+              
+               
+                
+                <Button variant="primary" type="submit" onClick={registerUser} className="register-submit-button">
                     Submit
                 </Button>
                 {alert.length > 0 && (

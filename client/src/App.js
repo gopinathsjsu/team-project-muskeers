@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './Components/Login/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './Components/NavBar/NavBar';
+import NavBarLoggedIn from './Components/NavBarLoggedIn/NavBarLoggedIn';
 import Register from './Components/Register/Register';
 import AdminDashboard from './Components/AdminDashboard/AdminDash'
 
@@ -26,7 +27,7 @@ const RegisterConatiner = () => (
 
 const AdminDashboardContainer = () => (
   <div >
-    <Navigation />
+    <NavBarLoggedIn />
     <Route component={AdminDashboard} />
   </div>
 );
