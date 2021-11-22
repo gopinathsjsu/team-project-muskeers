@@ -10,6 +10,7 @@ const signup = require("./routes/authentication");
 const login = require("./routes/authentication");
 const adminFunc = require("./routes/AdminFunc");
 const profile = require("./routes/Profile");
+const flightDetails = require("./routes/FlightDetails");
 
 require('dotenv').config()
 
@@ -37,3 +38,4 @@ app.use("/api",signup);
 app.use("/api",login);
 app.use("/api",adminFunc);
 app.use("/api",profile);
+app.use("/api",flightDetails);
