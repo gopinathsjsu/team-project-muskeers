@@ -32,6 +32,17 @@ router.post("/createFlight",(req,res)=>{
     });
 });
 
+router.get("/filghtDetailsAdmin",(req,res)=>{
+    const flightDetailsQuery = "select flight_table.flight_id, flight_table.source_city, flight_table.destination_city, flight_details.start_time, flight_details.end_time, flight_details.availability, flight_details.price, flight_details.start_date, flight_details.status from flight_table INNER JOIN flight_details ON flight_table.flight_id = flight_details.flight_id;";
+    pool.query(flightDetailsQuery,(err,result)=>{
+        if(err){
+            res.status(409).json({message:"Error occured while tring to fetch"});
+        }
+
+        res.status(200).json({details: result});
+    })
+});
+
 router.post("/updateStatus",(req,res)=>{
     const flightId = req.body.flightId;
     const date = req.body.date;
