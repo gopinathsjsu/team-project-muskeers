@@ -13,7 +13,7 @@ const profile = require("./routes/Profile");
 const flightDetails = require("./routes/FlightDetails");
 const bookFlight = require("./routes/BookFlight");
 const cancelFlight = require("./routes/BookFlight");
-
+const flightId = require("./routes/FlightDetails");
 
 require('dotenv').config()
 
@@ -44,3 +44,4 @@ app.use("/api",profile);
 app.use("/api",flightDetails);
 app.use("/api",bookFlight);
 app.use("/api",cancelFlight);
+app.use("/api",flightId);

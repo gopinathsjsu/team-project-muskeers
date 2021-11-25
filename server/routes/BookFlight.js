@@ -1,6 +1,16 @@
 const router = require("express").Router();
 const pool = require("../utils/connection");
 
+router.post("/flightId",(req,res)=>{
+    
+    const flightIdQuery = "select flight_id from flight_table;";
+
+    pool.query(updateStatusQuery, [],(err,result)=>{
+        console.log(result);
+        res.status(200).json({flight_id: result[0].flight_id});
+    });
+});
+
 router.post("/bookFlight",(req,res)=>{
     console.log("inside book flight" + req.body);
     console.log("==============");

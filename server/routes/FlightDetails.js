@@ -1,6 +1,16 @@
 const router = require("express").Router();
 const pool = require("../utils/connection");
 
+router.get("/flightId",(req,res)=>{
+    console.log("in flight id");
+    const flightIdQuery = "select flight_id from flight_table;";
+
+    pool.query(flightIdQuery, [],(err,result)=>{
+        console.log(result);
+        res.status(200).json({flight_id: result});
+    });
+});
+
 router.post("/flightDetails", (req, res) => {
     // const startTime = req.body.startTime;
     // const endTime = req.body.endTime;
