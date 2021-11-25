@@ -6,7 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './Components/NavBar/NavBar';
 import NavBarLoggedIn from './Components/NavBarLoggedIn/NavBarLoggedIn';
 import Register from './Components/Register/Register';
-import AdminDashboard from './Components/AdminDashboard/AdminDash'
+import AdminDashboard from './Components/AdminDashboard/AdminDash';
+import FlightBook from './Components/FlightBook/FlightBook';
+import UserProfile from './Components/UserProfile/UserProfile';
 import AdminList from './Components/AdminList/AdminList'
 
 
@@ -41,7 +43,19 @@ const AdminListContainer = () => (
 );
 
 
+const FlightBookContainer = () => (
+  <div >
+    <NavBarLoggedIn />
+    <Route component={FlightBook} />
+  </div>
+);
 
+const UserProfileContainer = () => (
+  <div >
+    <NavBarLoggedIn />
+    <Route component={UserProfile} />
+  </div>
+);
 
 
 
@@ -50,10 +64,14 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
+        <Route path="/UserProfile" component={UserProfileContainer} />
+          <Route path="/FlightBook" component={FlightBookContainer} />
+
           <Route path="/register" component={RegisterConatiner} />
           <Route path="/adminDash" component={AdminDashboardContainer} />
           <Route path="/adminList" component={AdminListContainer} />
           <Route path="/" component={LoginContainer} />
+         
         </Switch>
       </div>
     </Router>

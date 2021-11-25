@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const pool = require("../utils/connection");
 
-router.get("/flightDetails", (req, res) => {
+router.post("/flightDetails", (req, res) => {
     // const startTime = req.body.startTime;
     // const endTime = req.body.endTime;
     const startDate = req.body.startDate;
