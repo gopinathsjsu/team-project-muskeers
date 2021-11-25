@@ -2,3 +2,72 @@
     margin-top: 50px;
   
 }
+
+.src-region{
+    margin-top:10px;
+    border-radius:5px; 
+    border-color: #adb5bd !important;
+    width:43vw;
+    height:6vh;
+
+    
+
+}
+
+.dest-region{
+    margin-top:10px;
+    border-radius:5px; 
+    border-color: #adb5bd !important;
+    width:43vw;
+    height:6vh;
+}
+
+.admin-container{
+    height: 50vh;
+    width: 50vw !important;
+    margin-top:5vh;
+}
+
+.admin-alert{
+    margin-top: 10px;
+}
+
+.start-time{
+    width: 10vw !important;
+    margin-top: 10px;
+}
+
+.end-time{
+    margin-left: 5vw !important;
+    margin-top:8px !important;
+    width: 10vw;
+   
+}
+
+.react-datetime-picker__wrapper{
+    border-radius: 8px;
+    border-color: #adb5bd !important;
+    height: 40px;
+    margin-top: 3px;
+}
+
+.end-time-update{
+    margin-left: 10vw !important;
+    margin-top:8px !important;
+    width: 10vw;
+    margin-top:20px !important;
+    border-radius: 10px !important;
+   
+}
+
+.form-data{
+    margin-left: 30px;
+}
+
+.submit{
+    margin-top: 30px;
+}
+
+.submit-update{
+    margin-top: 10px;
+}

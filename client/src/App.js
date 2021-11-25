@@ -9,6 +9,8 @@ import Register from './Components/Register/Register';
 import AdminDashboard from './Components/AdminDashboard/AdminDash';
 import FlightBook from './Components/FlightBook/FlightBook';
 import UserProfile from './Components/UserProfile/UserProfile';
+import AdminList from './Components/AdminList/AdminList'
+
 
 
 const LoginContainer = () => (
@@ -30,6 +32,13 @@ const AdminDashboardContainer = () => (
   <div >
     <NavBarLoggedIn />
     <Route component={AdminDashboard} />
+  </div>
+);
+
+const AdminListContainer = () => (
+  <div >
+    <NavBarLoggedIn />
+    <Route component={AdminList} />
   </div>
 );
 
@@ -60,6 +69,7 @@ function App() {
 
           <Route path="/register" component={RegisterConatiner} />
           <Route path="/adminDash" component={AdminDashboardContainer} />
+          <Route path="/adminList" component={AdminListContainer} />
           <Route path="/" component={LoginContainer} />
          
         </Switch>
