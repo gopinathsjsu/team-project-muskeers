@@ -7,6 +7,7 @@ import Navigation from './Components/NavBar/NavBar';
 import NavBarLoggedIn from './Components/NavBarLoggedIn/NavBarLoggedIn';
 import Register from './Components/Register/Register';
 import AdminDashboard from './Components/AdminDashboard/AdminDash'
+import AdminList from './Components/AdminList/AdminList'
 
 
 
@@ -32,6 +33,13 @@ const AdminDashboardContainer = () => (
   </div>
 );
 
+const AdminListContainer = () => (
+  <div >
+    <NavBarLoggedIn />
+    <Route component={AdminList} />
+  </div>
+);
+
 
 
 
@@ -44,6 +52,7 @@ function App() {
         <Switch>
           <Route path="/register" component={RegisterConatiner} />
           <Route path="/adminDash" component={AdminDashboardContainer} />
+          <Route path="/adminList" component={AdminListContainer} />
           <Route path="/" component={LoginContainer} />
         </Switch>
       </div>
