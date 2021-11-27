@@ -14,19 +14,21 @@ router.post("/flightId",(req,res)=>{
 router.post("/bookFlight",(req,res)=>{
     console.log("inside book flight" + req.body);
     console.log("==============");
+    
     const flightId = req.body.flightId;
     const userId = req.body.userId;
     const flightDate = req.body.flightDate;
     const bookingDate = req.body.bookingDate;
     const price = req.body.price;
+    const paymentID = req.body.paymentId;
 
     console.log(flightId+"=============="+price);
 
-    const bookflightQuery = "INSERT INTO flight_booking (flight_id, user_id, flight_date, booking_date,price) VALUES (?, ?, ?, ?,?);";
+    const bookflightQuery = "INSERT INTO flight_booking (flight_id, user_id, flight_date, booking_date,price,payment_id) VALUES (?, ?, ?, ?,?,?);";
     const updateAvailability = "UPDATE flight_details SET `availability` = `availability` - 1 WHERE  flight_id = ? and start_date = ?";
     const updateUserPoints = "UPDATE users SET `user_flying_credits` = `user_flying_credits` + (?*0.2) WHERE  user_id=?"
 
-    pool.query(bookflightQuery, [flightId, userId, flightDate,bookingDate,price],(err,result)=>{
+    pool.query(bookflightQuery, [flightId, userId, flightDate,bookingDate,price,paymentID],(err,result)=>{
         console.log("1"+bookflightQuery);
 
         pool.query(updateAvailability, [flightId, flightDate],(err,update_result)=>{
@@ -38,7 +40,7 @@ router.post("/bookFlight",(req,res)=>{
 
                 console.log(update_pointsresult);
                 console.log(err);
-                res.status(200).json({message: "updated user points"});
+                res.status(200).json({bookingId:result[0].bookingId});
             });
 
 

@@ -79,7 +79,7 @@ export const SearchForm = (props) => {
 
     // setFormValid({ isValid: true });
     // props.findFlights({flights, criteria});
-    setRegionorg("Dallas");
+    
     console.log(source);
     Axios.post(endPointObj.url + "flightDetails", {
       startDate,
@@ -103,15 +103,6 @@ export const SearchForm = (props) => {
             status: response.data.status
          };
          props.sendToParent(criteria);
-        // flight_id: result[0].flight_id,
-        // source: result[0].source_city,
-        
-        // destination: result[0].destination_city,
-        // startDate: result[0].start_date,
-        // end_time: result[0].end_time,
-        // availability: result[0].availability,
-        // price: result[0].price,
-        // status: result[0].status
         
       })
       .catch((e) => {
@@ -159,7 +150,7 @@ export const SearchForm = (props) => {
               country="United States"
               value={source}
               defaultOptionLabel="Enter Origin"
-              // onChange={(val) => setRegionorg(val)}
+              onChange={(val) => setRegionorg(val)}
             />
             {status.origin && (
               <ErrorLabel message="Please enter a valid airport"></ErrorLabel>

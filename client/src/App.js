@@ -10,8 +10,8 @@ import AdminDashboard from './Components/AdminDashboard/AdminDash';
 import FlightBook from './Components/FlightBook/FlightBook';
 import UserProfile from './Components/UserProfile/UserProfile';
 import AdminList from './Components/AdminList/AdminList'
-
-
+import Booking2 from './Components/Booking/Booking2';
+import Thankyou from './Components/Booking/Thankyou';
 
 const LoginContainer = () => (
   <div >
@@ -56,14 +56,26 @@ const UserProfileContainer = () => (
     <Route component={UserProfile} />
   </div>
 );
-
-
+const BookPaymentContainer = () => (
+  <div >
+    <NavBarLoggedIn />
+    <Route component={Booking2} />
+  </div>
+);
+const ThankyouContainer = () => (
+  <div >
+    <NavBarLoggedIn />
+    <Route component={Thankyou} />
+  </div>
+);
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Switch>
+        <Route path="/thankyou" component={ThankyouContainer} />
+        <Route path="/bookpayment" component={BookPaymentContainer} />
         <Route path="/UserProfile" component={UserProfileContainer} />
           <Route path="/FlightBook" component={FlightBookContainer} />
 
