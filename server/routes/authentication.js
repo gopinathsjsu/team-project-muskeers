@@ -58,7 +58,8 @@ router.post("/login", (req,res)=>{
                       const success = {
                         email: email,
                         name: result[0].user_name,
-                        role: result[0].user_role
+                        role: result[0].user_role,
+                        userId : result[0].user_id
                       };
                           
                       res.status(200).json({ success: success });
