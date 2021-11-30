@@ -13,13 +13,14 @@ router.post("/createFlight",(req,res)=>{
         const endTime = req.body.endTime;
         const startDate = req.body.startDate;
         const endDate = req.body.endDate;
+        const price = req.body.price;
         const insertFlightDetailsQuery = "INSERT INTO flight_details (flight_id,start_time,end_time,availability,price,start_date) VALUES(?,?,?,?,?,?)";
 
         const startdaysArray = startDate.split("-");
         const enddaysArray = endDate.split("-");
         for(let i=parseInt(startdaysArray[2]);i<=parseInt(enddaysArray[2]);i++){
             const sd = startdaysArray[0] + "-" + startdaysArray[1] + "-" + i;
-            pool.query(insertFlightDetailsQuery,[flightId,startTime,endTime,180,"$500",sd],(err1,result1)=>{
+            pool.query(insertFlightDetailsQuery,[flightId,startTime,endTime,180,price,sd],(err1,result1)=>{
                 if(err1){
                     console.log(err);
                     res.status(409).json({message: "Error while creating flight"});
