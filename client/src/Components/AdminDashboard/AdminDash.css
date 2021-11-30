@@ -23,7 +23,7 @@
 }
 
 .admin-container{
-    height: 50vh;
+    height: 70vh;
     width: 50vw !important;
     margin-top:5vh;
 }
@@ -70,5 +70,25 @@
 }
 
 .submit-update{
+    margin-top: 10px;
+}
+
+.date{
+    margin-top: 10px;
+    width: 35.5vw;
+  
+}
+
+.status{
+    margin-top: 10px;
+}
+
+
+.dateLabel {
+    margin-top: 13px;
+    
+}
+
+.create-submit{
     margin-top: 10px;
 }
