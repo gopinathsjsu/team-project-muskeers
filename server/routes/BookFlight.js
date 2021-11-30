@@ -33,9 +33,9 @@ router.post("/bookFlight",(req,res)=>{
         pool.query(updateAvailability, [flightId, flightDate],(err,update_result)=>{
             console.log("2"+updateAvailability);
             pool.query(updateUserPoints, [price, userId],(err,update_pointsresult)=>{
-
-                console.log("3" + updateUserPoints);
-
+console.log("-----------");
+                console.log("3" + result[0]);
+                console.log("-----------");
 
                 console.log(update_pointsresult);
                 console.log(err);
