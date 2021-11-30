@@ -8,12 +8,16 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    width:80vh;
   }
   
   .gray-background {
     background-color: lightgray;
   }
   
+  .card-width {
+    width:80vh;
+  }
   @media screen and (max-width: 640px) {
     .Flight-info .detail-label:nth-child(2) {
       flex: 5 1 80%;
