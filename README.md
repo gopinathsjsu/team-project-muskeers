@@ -27,6 +27,7 @@
 * Backend and Database  : Sai Nikhil Yandamuri, Karan Pinakinbhai Jariwala
    
 # Architectural Diagram:
+![](documentation/architectural%20diagram.jpeg)
 
 
 
