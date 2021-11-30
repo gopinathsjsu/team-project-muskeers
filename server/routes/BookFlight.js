@@ -5,9 +5,9 @@ router.post("/flightId",(req,res)=>{
     
     const flightIdQuery = "select flight_id from flight_table;";
 
-    pool.query(updateStatusQuery, [],(err,result)=>{
+    pool.query(flightIdQuery, [],(err,result)=>{
         console.log(result);
-        res.status(200).json({flight_id: result[0].flight_id});
+        res.status(200).json({flight_id: result});
     });
 });
 
