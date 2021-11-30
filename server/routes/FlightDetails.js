@@ -28,16 +28,16 @@ router.post("/flightDetails", (req, res) => {
         }
 
         res.status(200).json({
-            
-            flight_id: result[0].flight_id,
-            source: result[0].source_city,
-            destination: result[0].destination_city,
-            startDate: result[0].start_date,
-            end_time: result[0].end_time,
-            availability: result[0].availability,
-            price: result[0].price,
-            status: result[0].status,
-            start_time: result[0].start_time
+            result: result
+            // flight_id: result[0].flight_id,
+            // source: result[0].source_city,
+            // destination: result[0].destination_city,
+            // startDate: result[0].start_date,
+            // end_time: result[0].end_time,
+            // availability: result[0].availability,
+            // price: result[0].price,
+            // status: result[0].status,
+            // start_time: result[0].start_time
 
         });
     });
