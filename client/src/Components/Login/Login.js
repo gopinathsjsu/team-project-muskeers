@@ -34,7 +34,9 @@ function Login() {
                     redirect();
                 }
                 else {
-                    console.log(role)
+                    console.log(role);
+                    console.log(response);
+                    localStorage.setItem('userId', response.data.username);
                 }
 
 
