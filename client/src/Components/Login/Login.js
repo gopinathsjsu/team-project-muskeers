@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Col, Button, Form } from 'react-bootstrap';
+import { Col, Button, Form, Alert} from 'react-bootstrap';
 import "./Login.css";
 import Axios from 'axios';
 import endPointObj from '../../endPointObj'
@@ -16,11 +16,10 @@ function Login() {
 
     const logIn = (e) => {
         console.log(email, password);
-        let role = "admin"
 
-        const redirect = () => {
+        const redirect = (path) => {
             history.push({
-                pathname: '/adminDash',
+                pathname: path,
             });
         };
 
@@ -28,21 +27,19 @@ function Login() {
         return new Promise((resolve, reject) => {
             console.log(email, password);
             Axios.post(endPointObj.url + 'login', { email, password }).then((response) => {
-                resolve(response);
 
-                if (role === 'admin') {
-                    redirect();
+                if (response.data.success.role === 'admin') {
+                    redirect("/adminDash");
                 }
                 else {
-                    console.log(role);
                     console.log(response);
                     localStorage.setItem('userId', response.data.username);
+                    redirect("/FlightBook");
                 }
 
 
             }).catch((e) => {
                 if (e.response && e.response.data) {
-                    console.log(e.response.data.message);
                     setAlert(e.response.data.message);
                 }
 
@@ -69,6 +66,11 @@ function Login() {
                     <Button variant="primary" type="submit" onClick={logIn}>
                         Submit
                     </Button>
+                    {alert.length > 0 && (
+                    <Alert className="alert" key="0" variant="danger">
+                        {alert}
+                    </Alert>
+                )}
                 </Form>
             </Col>
      

@@ -12,6 +12,8 @@ import UserProfile from './Components/UserProfile/UserProfile';
 import AdminList from './Components/AdminList/AdminList'
 import Booking2 from './Components/Booking/Booking2';
 import Thankyou from './Components/Booking/Thankyou';
+import NavBarClient from './Components/NavBarClient/NavBarClient';
+import listBookings from './Components/ListBookings/ListBookings';
 
 const LoginContainer = () => (
   <div >
@@ -45,26 +47,34 @@ const AdminListContainer = () => (
 
 const FlightBookContainer = () => (
   <div >
-    <NavBarLoggedIn />
+    <NavBarClient />
     <Route component={FlightBook} />
   </div>
 );
 
 const UserProfileContainer = () => (
   <div >
-    <NavBarLoggedIn />
+    <NavBarClient />
     <Route component={UserProfile} />
   </div>
 );
 const BookPaymentContainer = () => (
   <div >
-    <NavBarLoggedIn />
+    <NavBarClient />
     <Route component={Booking2} />
   </div>
 );
+
+const ListBookingContainer = () => (
+  <div >
+    <NavBarClient />
+    <Route component={listBookings} />
+  </div>
+);
+
 const ThankyouContainer = () => (
   <div >
-    <NavBarLoggedIn />
+    <NavBarClient/>
     <Route component={Thankyou} />
   </div>
 );
@@ -82,7 +92,9 @@ function App() {
           <Route path="/register" component={RegisterConatiner} />
           <Route path="/adminDash" component={AdminDashboardContainer} />
           <Route path="/adminList" component={AdminListContainer} />
+          <Route path="/listBookings" component={ListBookingContainer} />
           <Route path="/" component={LoginContainer} />
+
          
         </Switch>
       </div>

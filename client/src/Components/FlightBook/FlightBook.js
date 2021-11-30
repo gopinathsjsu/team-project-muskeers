@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import './FlightBook.css';
 //import { connect } from 'react-redux';
 import SearchForm from './SearchForm.js';
-//import FlightInfo from './FlightInfo.js';
+import FlightInfo from './FlightInfo.js';
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 
 function FlightBook(props) {
   
-  const [criteria, setCriteria] = useState("");
+  const [criteria, setCriteria] = useState([]);
 
   
   const handleCallback = (childData) =>{
@@ -17,6 +17,7 @@ function FlightBook(props) {
 
 
 console.log("In parent");
+ console.log(criteria);
   console.log(criteria.source);
   console.log(criteria.destination);
   console.log(criteria.startDate);
@@ -29,7 +30,7 @@ console.log("In parent");
           <SearchForm sendToParent={handleCallback}></SearchForm>
         </aside>
         <section className="Results-section">
-        {/* <FlightInfo dataParentToChild = {criteria}/>              */}
+        <FlightInfo dataParentToChild = {criteria}/>            
         </section>
       </section>
       <section>

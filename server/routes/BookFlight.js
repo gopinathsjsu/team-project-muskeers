@@ -22,6 +22,13 @@ router.post("/bookFlight",(req,res)=>{
     const price = req.body.price;
     const paymentID = req.body.paymentId;
 
+    console.log(flightId);
+    console.log(userId);
+    console.log(flightDate);
+    console.log(bookingDate);
+    console.log(price);
+    console.log(paymentID);
+
     console.log(flightId+"=============="+price);
 
     const bookflightQuery = "INSERT INTO flight_booking (flight_id, user_id, flight_date, booking_date,price,payment_id) VALUES (?, ?, ?, ?,?,?);";
@@ -40,7 +47,7 @@ router.post("/bookFlight",(req,res)=>{
 
                 console.log(update_pointsresult);
                 console.log(err);
-                res.status(200).json({bookingId:result[0].bookingId});
+                res.status(200).json({message:"updated"});
             });
 
 

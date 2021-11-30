@@ -31,34 +31,36 @@ export const SearchForm = (props) => {
   const [country, setCountry] = useState("");
   const [source, setRegionorg] = useState("");
   const [destination, setRegiondes] = useState("");
-  const [startDate, setStartDate] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
   const [alert, setAlert] = useState('');
+  const [flightArr, setFlightArr] = useState([]);
+  const [noofpassengers,setnoofpassengers] = useState('');
   //const [destination, setRegiondes] = useState('');
   let invalidFields = {};
   //const isReturn = true;
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const { flights } = props;
-    invalidFields = {};
-    // const criteria = {
-    //  // origin: origin.state.text,
-    //  // destination: destination.state.text,
-    //  // departureDate: event.target.dateOfDep.value,
-    //  // numOfPassengers: event.target.numOfPassengers.value,
-    // };
+  const handleSubmit = (source, destination, startDate) => {
+    //event.preventDefault();
+    // const { flights } = props;
+    // invalidFields = {};
+    // // const criteria = {
+    // //  // origin: origin.state.text,
+    // //  // destination: destination.state.text,
+    // //  // departureDate: event.target.dateOfDep.value,
+    // //  // numOfPassengers: event.target.numOfPassengers.value,
+    // // };
 
-    
+    sessionStorage.setItem('noofpassengers',noofpassengers);
 
 
-    if (event.target.flightType[1].checked) {
-      //criteria.returnDate = event.target.dateOfReturn.value;
-      if (!isDate(event.target.dateOfReturn.value)) {
-        invalidFields.returnDate = true;
-      }
-    } else {
-      console.log(event.target.dateOfDep.value);
-      setStartDate(event.target.dateOfDep.value);
-    }
+    // if (event.target.flightType[1].checked) {
+    //   //criteria.returnDate = event.target.dateOfReturn.value;
+    //   if (!isDate(event.target.dateOfReturn.value)) {
+    //     invalidFields.returnDate = true;
+    //   }
+    // } else {
+    //   console.log(event.target.dateOfDep.value);
+    //   setStartDate(event.target.dateOfDep.value);
+    // }
      console.log(source);
      console.log(destination);
      console.log(startDate);
@@ -88,21 +90,24 @@ export const SearchForm = (props) => {
       
     })
       .then((response) => {
-        console.log(response);
-        console.log(response.data.end_time);
+        console.log(response.data);
+        //setFlightArr(response.data);
+        props.sendToParent(response.data);
+
        
-        const criteria = {
-          source: response.data.source,
-          destination: response.data.destination,
-          startDate: event.target.dateOfDep.value,
-          numOfPassengers: event.target.numOfPassengers.value,
-          flight_id: response.data.flight_id,
-         end_time: response.data.end_time,
-          availability: response.data.availability,
-            price: response.data.price,
-            status: response.data.status
-         };
-         props.sendToParent(criteria);
+        // const criteria = {
+        //   source: response.data.source,
+        //   destination: response.data.destination,
+        //   startDate: event.target.dateOfDep.value,
+        //   numOfPassengers: event.target.numOfPassengers.value,
+        //   flight_id: response.data.flight_id,
+        //  end_time: response.data.end_time,
+        //   availability: response.data.availability,
+        //     price: response.data.price,
+        //     status: response.data.status
+        //  };
+        //  sessionStorage.setItem(criteria);
+        //  props.sendToParent(criteria);
         
       })
       .catch((e) => {
@@ -116,8 +121,8 @@ export const SearchForm = (props) => {
 
   return (
     <Card>
-      <Card.Body>
-        <Form className="search-form-container" onSubmit={handleSubmit}>
+      <Card.Body className ="cardbodyheight">
+        <Form className="search-form-container">
           <Form.Group>
             <Form.Check
               inline
@@ -184,6 +189,8 @@ export const SearchForm = (props) => {
               type="date"
               name="dateOfDep"
               placeholder="yyyy-mm-dd"
+              selected={startDate}
+              onChange={(e) => {console.log(e.target.value);setStartDate(e.target.value)}}
               required
             />
             {status.departureDate && (
@@ -211,6 +218,7 @@ export const SearchForm = (props) => {
               as="select"
               name="numOfPassengers"
               placeholder="Number of Passengers"
+              onChange={(e) => setnoofpassengers(e.target.value)}
             >
               <option>Number of Passengers</option>
               <option>1</option>
@@ -219,9 +227,10 @@ export const SearchForm = (props) => {
               <option>4</option>
               <option>5</option>
             </Form.Control>
+
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary" onClick={()=>{handleSubmit(source, destination, startDate)}}>
             Search
           </Button>
         </Form>

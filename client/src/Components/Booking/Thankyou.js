@@ -10,14 +10,20 @@ import { useHistory } from "react-router-dom";
 // import {logOnDivHover} from "../../api/user/API_Logging";
 // import * as LogAPI from "../../api/user/API_Logging";
 //needed
-const flightNoofPassengers = "1";
-const source = "Dallas";
-const destination = "New York";
+const flightNoofPassengers = sessionStorage.getItem("noofpassengers");
+const parsedInfo = JSON.parse(sessionStorage.getItem("selectFlight"));
+
+const source = parsedInfo.source_city;
+const destination = parsedInfo.destination_city;
 const flightOperator = "Quatar";
-const startTime = "7:00:00";
-const end_time = "9:00:00";
-const startDate = "2021-12-12";
-const price = "300";
+const startTime = sessionStorage.getItem("start_time");
+const end_time =  sessionStorage.getItem("end_time");
+const flightDate = parsedInfo.start_date;
+const day= new Date(flightDate).getUTCDate();
+const month =new Date(flightDate).getUTCMonth();
+const year = new Date(flightDate).getUTCFullYear();
+const newDate  = year + "-" + month + "-" + day;
+const price = sessionStorage.getItem("price");
 
 //for cancel api
 //bookingId
@@ -31,10 +37,37 @@ const flightId = "24";
 const userId = "38";
 const bookingDate = "2021-10-11";
 
+
+
+// const parsedInfo = JSON.parse(sessionStorage.getItem("selectFlight"));
+//    const [cardName,setcardname] =  useState("");
+//    const [expiryDate,setexpiryDate] = useState("");
+//    const [cvv,setcvv] = useState("");
+//    const history = useHistory();
+//   //-----------------------------const flightId = req.body.flightId;
+//   //gonna pass to booking api
+//   //const userId = localStorage.getItem('userId');
+//   const userId = 34;
+//   const useremail = localStorage.getItem('email_current');
+//   const flightDate = parsedInfo.start_date;
+//   const day= new Date(flightDate).getUTCDate();
+//   const month =new Date(flightDate).getUTCMonth();
+//   const year = new Date(flightDate).getUTCFullYear();
+//   const newDate  = year + "-" + month + "-" + day;
+//   const bookingDate = new Date();
+//   const day1= new Date(bookingDate).getUTCDate();
+//   const month1 =new Date(bookingDate).getUTCMonth();
+//   const year1 = new Date(bookingDate).getUTCFullYear();
+//   const newDate1  = year1 + "-" + month1 + "-" + day1;
+//   const price = parsedInfo.price;
+//   const flightId = parsedInfo.flight_id;
+//   const paymentId = "4";
+
 function Thankyou() {
   const [alert, setAlert] = useState("");
   const handlecancel = (e) => {
     e.preventDefault();
+    const startDate = newDate;
     return new Promise((resolve, reject) => {
       //console.log(email, password);
       Axios.post(endPointObj.url + "cancelBooking", {
@@ -95,7 +128,7 @@ function Thankyou() {
               <div className="fi_title color-dark-2">
                 {startTime}
                 <br />
-                {startDate}
+                {newDate}
               </div>
             </div>
           </div>
@@ -212,7 +245,6 @@ function Thankyou() {
   return (
     <div className="container">
       <hr />
-      <h3>Thank you ! Your payment is successful :)</h3>
       <div>
         <div className="container">
           <div className="row list-wrapper  bg-grey-2">
@@ -230,7 +262,7 @@ function Thankyou() {
 
                         {showBooking()}
                         {/* calling cancel flight booking  */}
-                        <div className="col-sm-12">
+                        {/* <div className="col-sm-12">
                           <button
                             className="btn-block btn-success btn-group-sm"
                             type="button"
@@ -244,7 +276,7 @@ function Thankyou() {
                               {alert}
                             </Alert>
                           )}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>

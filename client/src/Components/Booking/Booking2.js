@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Col, Button, Form } from "react-bootstrap";
+import { Col, Form } from "react-bootstrap";
 import Axios from "axios";
 import endPointObj from "../../endPointObj";
-import { useHistory } from "react-router-dom";
+import { useHistory,Link} from "react-router-dom";
+import Button from '@material-ui/core/Button';
 //import {connect} from "react-redux"
 
 // import {booking_success} from "../../actions";
@@ -19,7 +20,7 @@ import { useHistory } from "react-router-dom";
 //import Traveler from './Traveler';
 //import Thankyou from './Thankyou';
 
-import "./bootstrap.min.css";
+//import "./bootstrap.min.css";
 //import './jquery-ui.min.css'
 // import './jquery-ui.structure.min.css'
 //import "./style.css";
@@ -27,26 +28,47 @@ import "./bootstrap.min.css";
 function Booking2(props) {
   const [alert, setAlert] = useState("");
   const handleSubmit = (userdata) => {};
+  const parsedInfo = JSON.parse(sessionStorage.getItem("selectFlight"));
+   const [cardName,setcardname] =  useState("");
+   const [expiryDate,setexpiryDate] = useState("");
+   const [cvv,setcvv] = useState("");
+   const history = useHistory();
   //-----------------------------const flightId = req.body.flightId;
   //gonna pass to booking api
-  const userId = "30";
-  const useremail = "geetikakapil123@gmail.com";
-  const flightDate = "2021-12-12";
-  const bookingDate = "2021-10-11";
-  const price = "300";
-  const flightId = "24";
+  //const userId = localStorage.getItem('userId');
+  const userId = 34;
+  const useremail = localStorage.getItem('email_current');
+  const flightDate = parsedInfo.start_date;
+  const day= new Date(flightDate).getUTCDate();
+  const month =new Date(flightDate).getUTCMonth();
+  const year = new Date(flightDate).getUTCFullYear();
+  const newDate  = year + "-" + month + "-" + day;
+  const bookingDate = new Date();
+  const day1= new Date(bookingDate).getUTCDate();
+  const month1 =new Date(bookingDate).getUTCMonth();
+  const year1 = new Date(bookingDate).getUTCFullYear();
+  const newDate1  = year1 + "-" + month1 + "-" + day1;
+  const price = parsedInfo.price;
+  const flightId = parsedInfo.flight_id;
   const paymentId = "4";
   //  const paymentID = "4"; ????//passing unique to the backend
 
   //------------------------------
   //needed
-  const flightNoofPassengers = "1";
-  const source = "Dallas";
-  const destination = "New York";
+  const flightNoofPassengers = sessionStorage.getItem("noofpassengers");
+  const source = parsedInfo.source_city;
+  const destination = parsedInfo.destination_city;
   const flightOperator = "Quatar";
-  const startTime = "7:00:00";
-  const end_time = "9:00:00";
-  const startDate = "2021-12-12";
+  const startTime = parsedInfo.start_time;
+  const end_time = parsedInfo.end_time;
+  const startDate = parsedInfo.start_date;
+
+
+  const redirect = () => {
+    history.push({
+        pathname: '/thankyou',
+    });
+};
 
   //--------
   //gonna pass to addpayment api
@@ -298,8 +320,34 @@ function Booking2(props) {
   }, []);
   //booking api call
 
-  const handleAddPayment = () => {};
+  const handleAddPayment = () => {
+      
+    return new Promise((resolve, reject) => {
+        Axios.post(endPointObj.url + "addPayment", {
+           userId,
+           cardName,
+           cvv,
+           expiryDate
+        })
+          .then((response) => {
+            console.log(response);
+            setAlert("Payment added successfully");
+          })
+          .catch((e) => {
+            if (e.response && e.response.data) {
+              console.log(e.response.data.message);
+              setAlert(e.response.data.message);
+            }
+          });
+      });
+
+
+
+
+
+  };
   const handleFlightBooking = (userdata) => {
+  
     console.log("In handleFlightBooking");
 
     // console.log(userdata);
@@ -389,12 +437,14 @@ function Booking2(props) {
                 //     .catch((err) => {
                 //         console.log(err);
                 //     });
-
+  
                 return new Promise((resolve, reject) => {
+                   var flightDate = newDate;
+                   var bookingDate = newDate1;
                   Axios.post(endPointObj.url + "bookFlight", {
                     flightId,
                     userId,
-                    startDate,
+                    flightDate,
                     bookingDate,
                     price,
                     paymentId
@@ -402,6 +452,7 @@ function Booking2(props) {
                     .then((response) => {
                       console.log(response);
                       setAlert("Booking made successfully");
+                      redirect();
                     })
                     .catch((e) => {
                       if (e.response && e.response.data) {
@@ -831,6 +882,7 @@ function Booking2(props) {
                               name=""
                               className="form-control input-sm"
                               id=""
+                              onChange={(e) => setcardname(e.target.value)}
                             />
                           </div>
                           <div className="col-sm-6">
@@ -843,7 +895,7 @@ function Booking2(props) {
                             />
                           </div>
                         </div>
-                        <div className="col-sm-8">
+                        <div className="col-sm-12">
                           <div className="col-sm-6">
                             <h6>Valid Through</h6>
                             <input
@@ -851,6 +903,7 @@ function Booking2(props) {
                               name=""
                               className="form-control input-sm"
                               id="validThrough"
+                              onChange={(e) => setexpiryDate(e.target.value)}
                             />
                           </div>
                           <div className="col-sm-2">
@@ -860,7 +913,17 @@ function Booking2(props) {
                               name=""
                               className="form-control input-sm"
                               id=""
+                              onChange={(e) => setcvv(e.target.value)}
                             />
+                          </div>
+                          <div className="col-sm-4">
+                            <button
+                              className="btn-block btn-success btn-group-sm"
+                              type="button"
+                              onClick={handleAddPayment}
+                            >
+                              ADD PAYMENT
+                            </button>
                           </div>
                         </div>
                         <div className="col-sm-12">
@@ -900,23 +963,20 @@ function Booking2(props) {
                         </div>
                         <div className="col-sm-12">
                           <div className="col-sm-6">
-                            <button
+                             <Button
                               className="btn-block btn-success btn-group-sm"
                               type="button"
+                              
                               onClick={handleFlightBooking}
                             >
                               BOOK
-                            </button>
-                          </div>
-                          <div className="col-sm-6">
-                            <button
-                              className="btn-block btn-success btn-group-sm"
-                              type="button"
-                              onClick={handleAddPayment}
-                            >
-                              ADD PAYMENT
-                            </button>
-                          </div>
+                            </Button> 
+
+
+                            </div>
+                
+
+                      
                           {/* <AlertContainer ref={a => this.msg = a} {...alertOptions}/> */}
                         </div>
                       </div>
