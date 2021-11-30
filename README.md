@@ -29,6 +29,8 @@
 # Architectural Diagram:
 ![](documentation/architectural%20diagram.jpeg)
 
+# Database Design:
+![](documentation/database.jpg)
 
 
 
