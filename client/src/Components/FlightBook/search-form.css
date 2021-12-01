@@ -3,5 +3,34 @@
 }
 .cardbodyheight
 {
-  height:100vh;
+  height:100vh !important;
+}
+
+
+.margin-fields{
+  margin-top: 10px !important;
+}
+
+
+
+.src-region{
+  margin-top:10px;
+  border-radius:5px; 
+  border-color: #adb5bd !important;
+  width:43vw;
+  height:5vh;
+  margin-top: 10px !important;
+
+
+  
+
+}
+
+.dest-region{
+  margin-top:10px;
+  border-radius:5px; 
+  border-color: #adb5bd !important;
+  width:43vw;
+  margin-top: 10px !important;
+  height:5vh;
 }

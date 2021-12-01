@@ -33,7 +33,7 @@ function Login() {
                 }
                 else {
                     console.log(response);
-                    localStorage.setItem('userId', response.data.username);
+                    localStorage.setItem('userId', response.data.success.userId);
                     redirect("/FlightBook");
                 }
 

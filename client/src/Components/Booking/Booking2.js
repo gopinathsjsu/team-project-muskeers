@@ -36,7 +36,7 @@ function Booking2(props) {
   //-----------------------------const flightId = req.body.flightId;
   //gonna pass to booking api
   //const userId = localStorage.getItem('userId');
-  const userId = 34;
+  const userId = localStorage.getItem("userId");
   const useremail = localStorage.getItem('email_current');
   const flightDate = parsedInfo.start_date;
   const day= new Date(flightDate).getUTCDate();

@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 //import { Typeahead } from "react-bootstrap-typeahead";
 import Axios from "axios";
 import endPointObj from "../../endPointObj";
+import "./search-form.css"
 
 // import { connect } from 'react-redux';
 // import './search-form.css';
@@ -120,8 +121,8 @@ export const SearchForm = (props) => {
 
 
   return (
-    <Card>
-      <Card.Body className ="cardbodyheight">
+    <Card className ="cardbodyheight">
+      <Card.Body >
         <Form className="search-form-container">
           <Form.Group>
             <Form.Check
@@ -156,6 +157,7 @@ export const SearchForm = (props) => {
               value={source}
               defaultOptionLabel="Enter Origin"
               onChange={(val) => setRegionorg(val)}
+              className="src-region"
             />
             {status.origin && (
               <ErrorLabel message="Please enter a valid airport"></ErrorLabel>
@@ -172,6 +174,7 @@ export const SearchForm = (props) => {
             <RegionDropdown
               country="United States"
               value={destination}
+              className="dest-region"
               defaultOptionLabel="Enter Destination"
                onChange={(val) => setRegiondes(val)}
             />
@@ -184,7 +187,7 @@ export const SearchForm = (props) => {
           </Form.Group>
 
           <Form.Group controlId="formGridDateOfDep">
-            <Form.Label>Departure Date</Form.Label>
+            <Form.Label className="margin-fields">Departure Date</Form.Label>
             <Form.Control
               type="date"
               name="dateOfDep"
@@ -205,6 +208,7 @@ export const SearchForm = (props) => {
                 type="date"
                 name="dateOfReturn"
                 placeholder="yyyy-mm-dd"
+                className="margin-fields"
                 required
               />
               {status.returnDate && (
@@ -218,6 +222,7 @@ export const SearchForm = (props) => {
               as="select"
               name="numOfPassengers"
               placeholder="Number of Passengers"
+              className="margin-fields"
               onChange={(e) => setnoofpassengers(e.target.value)}
             >
               <option>Number of Passengers</option>
@@ -230,7 +235,7 @@ export const SearchForm = (props) => {
 
           </Form.Group>
 
-          <Button variant="primary" onClick={()=>{handleSubmit(source, destination, startDate)}}>
+          <Button variant="primary" className="margin-fields" onClick={()=>{handleSubmit(source, destination, startDate)}}>
             Search
           </Button>
         </Form>

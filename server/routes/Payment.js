@@ -16,10 +16,13 @@ router.post("/addPayment",(req,res)=>{
     const addPaymentQuery = "INSERT INTO payment (user_id, card_name,expiry_date,cvv) VALUES (?,?, ?,?);";
     pool.query(addPaymentQuery,[userId,cardName,expiryDate,cvv],(err,result)=>{
         if(err){
+            console.log(err);
             res.status(409).json({message:"Error occured while adding"});
-        }
-       
+        }else
+        {
+        
         res.status(200).json({message:"Success in adding payment"});
+        }
     })
 });
 

@@ -11,7 +11,11 @@ import { useHistory } from "react-router-dom";
 // import * as LogAPI from "../../api/user/API_Logging";
 //needed
 const flightNoofPassengers = sessionStorage.getItem("noofpassengers");
-const parsedInfo = JSON.parse(sessionStorage.getItem("selectFlight"));
+let parsedInfo = JSON.parse(sessionStorage.getItem("selectFlight"));
+
+if(parsedInfo == undefined){
+  parsedInfo = {}
+}
 
 const source = parsedInfo.source_city;
 const destination = parsedInfo.destination_city;
