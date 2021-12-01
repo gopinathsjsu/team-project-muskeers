@@ -247,7 +247,7 @@ function UserProfile(props) {
 
   return (
     <div className="myaccount-bg">
-      <div className={classes.root}>
+      <div >
         <Grid container spacing={0}>
           <Grid item xs={12}>
             <div className="myaccount-parent">

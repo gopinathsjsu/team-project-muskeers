@@ -101,7 +101,8 @@ function NavBarClient(props) {
                             variant="contained"
                             color="primary"
                             className="profile-menu"
-                        onClick={handleClick}
+                            onClick={handleClick}
+                        
                         >
                             <div>
                                 <Avatar
@@ -127,9 +128,7 @@ function NavBarClient(props) {
                                     myAccount();
                                 }}
                             >
-                                <ListItemIcon>
-                                    <i class="fas fa-user"></i>
-                                </ListItemIcon>
+                                
                                 <ListItemText primary="Account" />
                             </StyledMenuItem>
 
@@ -138,9 +137,7 @@ function NavBarClient(props) {
                                     logOut();
                                 }}
                             >
-                                <ListItemIcon>
-                                    <i class="fas fa-sign-out-alt"></i>
-                                </ListItemIcon>
+                                
                                 <ListItemText primary="Logout" />
                             </StyledMenuItem>
                            
