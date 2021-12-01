@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { ListGroup, Button, Row, Col } from "react-bootstrap";
 import Axios from "axios";
 import endPointObj from "../../endPointObj";
+import "./ListBookings.css"
+
 const ListBookings = () => {
   const [flights, setFlights] = useState([]);
 
@@ -11,6 +13,7 @@ const ListBookings = () => {
       Axios.post(endPointObj.url + "userBookings", { userId })
         .then((response) => {
           resolve(response.data);
+          setFlights(response.data.result);
         })
         .catch((e) => {});
     });
@@ -29,7 +32,7 @@ const ListBookings = () => {
 
   useEffect(() => {
     getFlights().then((data) => {
-      setFlights(data.result);
+      // do nothin
     });
   }, []);
 

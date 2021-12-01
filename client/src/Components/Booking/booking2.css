@@ -1,0 +1,17 @@
+.add-payment {
+  margin-top: 10px !important;
+  border-radius: 5px;
+  border-width: 0px;
+  height: 30px;
+}
+
+.book {
+  color: #fff !important;
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+}
+
+.alert-payment{
+    margin-top:30px !important;
+    width: 30vw !important;
+}

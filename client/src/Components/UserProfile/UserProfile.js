@@ -118,7 +118,7 @@ function UserProfile(props) {
   
   const getAccountDetails = () => {
     return new Promise((resolve, reject) => {
-      var email = "karan@airlines.com";
+      var email = localStorage.getItem('email_current');
       console.log(email);
       Axios.post(
         endPointObj.url + "getProfile",

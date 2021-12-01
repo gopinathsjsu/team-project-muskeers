@@ -19,7 +19,12 @@
     width:80vw;
   }
 
-  @media screen and (max-width: 640px) {
+  .no-flights{
+    margin-top: 30vh !important;
+    margin-left: 20vw !important;
+  }
+
+  @media screen and (max-width: 50vw) {
     .Flight-info .detail-label:nth-child(2) {
       flex: 5 1 80%;
       text-align: end;

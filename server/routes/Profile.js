@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const pool = require("../utils/connection");
 
-router.get("/getProfile",(req,res)=>{
+router.post("/getProfile",(req,res)=>{
     const email = req.body.email;
     const userProfileQuery = "SELECT user_name, user_address, user_phone, user_flying_credits from users where user_email=?";
     pool.query(userProfileQuery,[email],(err,result)=>{
