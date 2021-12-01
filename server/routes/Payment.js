@@ -14,12 +14,14 @@ router.get("/addPayment",(req,res)=>{
     
 
     const addPaymentQuery = "INSERT INTO payment (user_id, card_name,expiry_date,cvv) VALUES (?,?, ?,?);";
+    const getPaymentId = "select payment_id from payment where "
     pool.query(addPaymentQuery,[userId,cardName,expiryDate,cvv],(err,result)=>{
         if(err){
             res.status(409).json({message:"Error occured while adding"});
         }
 
-        res.status(200).json({message:"Success in adding payment"});
+        
+        res.status(200).json({message:"Success in adding payment",paymentId:result.insertId});
     })
 });
 
