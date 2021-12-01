@@ -20,9 +20,9 @@ function Register(props) {
     const registerUser = (e) => {
         console.log(name, email, password);
 
-        const redirect = () => {
+        const redirect = (path) => {
             history.push({
-                pathname: '/adminDash',
+                pathname: path,
             });
         };
 
@@ -30,13 +30,15 @@ function Register(props) {
         return new Promise((resolve, reject) => {
             console.log(name, email, password);
             Axios.post(endPointObj.url + 'signup', { name, email, password, role }).then((response) => {
-                resolve(response);
+                console.log(response)
 
-                if (role === 'admin') {
-                    redirect();
+                if (response.data.role === 'admin') {
+                    redirect("/adminDash");
                 }
                 else {
-                    console.log(role)
+                    console.log(response);
+                    localStorage.setItem('userId', response.data.username);
+                    redirect("/FlightBook");
                 }
 
 

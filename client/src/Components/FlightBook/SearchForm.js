@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 //import { Typeahead } from "react-bootstrap-typeahead";
 import Axios from "axios";
 import endPointObj from "../../endPointObj";
+import "./search-form.css"
 
 // import { connect } from 'react-redux';
 // import './search-form.css';
@@ -31,34 +32,36 @@ export const SearchForm = (props) => {
   const [country, setCountry] = useState("");
   const [source, setRegionorg] = useState("");
   const [destination, setRegiondes] = useState("");
-  const [startDate, setStartDate] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
   const [alert, setAlert] = useState('');
+  const [flightArr, setFlightArr] = useState([]);
+  const [noofpassengers,setnoofpassengers] = useState('');
   //const [destination, setRegiondes] = useState('');
   let invalidFields = {};
   //const isReturn = true;
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const { flights } = props;
-    invalidFields = {};
-    // const criteria = {
-    //  // origin: origin.state.text,
-    //  // destination: destination.state.text,
-    //  // departureDate: event.target.dateOfDep.value,
-    //  // numOfPassengers: event.target.numOfPassengers.value,
-    // };
+  const handleSubmit = (source, destination, startDate) => {
+    //event.preventDefault();
+    // const { flights } = props;
+    // invalidFields = {};
+    // // const criteria = {
+    // //  // origin: origin.state.text,
+    // //  // destination: destination.state.text,
+    // //  // departureDate: event.target.dateOfDep.value,
+    // //  // numOfPassengers: event.target.numOfPassengers.value,
+    // // };
 
-    
+    sessionStorage.setItem('noofpassengers',noofpassengers);
 
 
-    if (event.target.flightType[1].checked) {
-      //criteria.returnDate = event.target.dateOfReturn.value;
-      if (!isDate(event.target.dateOfReturn.value)) {
-        invalidFields.returnDate = true;
-      }
-    } else {
-      console.log(event.target.dateOfDep.value);
-      setStartDate(event.target.dateOfDep.value);
-    }
+    // if (event.target.flightType[1].checked) {
+    //   //criteria.returnDate = event.target.dateOfReturn.value;
+    //   if (!isDate(event.target.dateOfReturn.value)) {
+    //     invalidFields.returnDate = true;
+    //   }
+    // } else {
+    //   console.log(event.target.dateOfDep.value);
+    //   setStartDate(event.target.dateOfDep.value);
+    // }
      console.log(source);
      console.log(destination);
      console.log(startDate);
@@ -79,7 +82,7 @@ export const SearchForm = (props) => {
 
     // setFormValid({ isValid: true });
     // props.findFlights({flights, criteria});
-    setRegionorg("Dallas");
+    
     console.log(source);
     Axios.post(endPointObj.url + "flightDetails", {
       startDate,
@@ -88,30 +91,24 @@ export const SearchForm = (props) => {
       
     })
       .then((response) => {
-        console.log(response);
-        console.log(response.data.end_time);
+        console.log(response.data);
+        //setFlightArr(response.data);
+        props.sendToParent(response.data);
+
        
-        const criteria = {
-          source: response.data.source,
-          destination: response.data.destination,
-          startDate: event.target.dateOfDep.value,
-          numOfPassengers: event.target.numOfPassengers.value,
-          flight_id: response.data.flight_id,
-         end_time: response.data.end_time,
-          availability: response.data.availability,
-            price: response.data.price,
-            status: response.data.status
-         };
-         props.sendToParent(criteria);
-        // flight_id: result[0].flight_id,
-        // source: result[0].source_city,
-        
-        // destination: result[0].destination_city,
-        // startDate: result[0].start_date,
-        // end_time: result[0].end_time,
-        // availability: result[0].availability,
-        // price: result[0].price,
-        // status: result[0].status
+        // const criteria = {
+        //   source: response.data.source,
+        //   destination: response.data.destination,
+        //   startDate: event.target.dateOfDep.value,
+        //   numOfPassengers: event.target.numOfPassengers.value,
+        //   flight_id: response.data.flight_id,
+        //  end_time: response.data.end_time,
+        //   availability: response.data.availability,
+        //     price: response.data.price,
+        //     status: response.data.status
+        //  };
+        //  sessionStorage.setItem(criteria);
+        //  props.sendToParent(criteria);
         
       })
       .catch((e) => {
@@ -124,9 +121,9 @@ export const SearchForm = (props) => {
 
 
   return (
-    <Card>
-      <Card.Body>
-        <Form className="search-form-container" onSubmit={handleSubmit}>
+    <Card className ="cardbodyheight">
+      <Card.Body >
+        <Form className="search-form-container">
           <Form.Group>
             <Form.Check
               inline
@@ -159,7 +156,8 @@ export const SearchForm = (props) => {
               country="United States"
               value={source}
               defaultOptionLabel="Enter Origin"
-              // onChange={(val) => setRegionorg(val)}
+              onChange={(val) => setRegionorg(val)}
+              className="src-region"
             />
             {status.origin && (
               <ErrorLabel message="Please enter a valid airport"></ErrorLabel>
@@ -176,6 +174,7 @@ export const SearchForm = (props) => {
             <RegionDropdown
               country="United States"
               value={destination}
+              className="dest-region"
               defaultOptionLabel="Enter Destination"
                onChange={(val) => setRegiondes(val)}
             />
@@ -188,11 +187,13 @@ export const SearchForm = (props) => {
           </Form.Group>
 
           <Form.Group controlId="formGridDateOfDep">
-            <Form.Label>Departure Date</Form.Label>
+            <Form.Label className="margin-fields">Departure Date</Form.Label>
             <Form.Control
               type="date"
               name="dateOfDep"
               placeholder="yyyy-mm-dd"
+              selected={startDate}
+              onChange={(e) => {console.log(e.target.value);setStartDate(e.target.value)}}
               required
             />
             {status.departureDate && (
@@ -207,6 +208,7 @@ export const SearchForm = (props) => {
                 type="date"
                 name="dateOfReturn"
                 placeholder="yyyy-mm-dd"
+                className="margin-fields"
                 required
               />
               {status.returnDate && (
@@ -220,6 +222,8 @@ export const SearchForm = (props) => {
               as="select"
               name="numOfPassengers"
               placeholder="Number of Passengers"
+              className="margin-fields"
+              onChange={(e) => setnoofpassengers(e.target.value)}
             >
               <option>Number of Passengers</option>
               <option>1</option>
@@ -228,9 +232,10 @@ export const SearchForm = (props) => {
               <option>4</option>
               <option>5</option>
             </Form.Control>
+
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary" className="margin-fields" onClick={()=>{handleSubmit(source, destination, startDate)}}>
             Search
           </Button>
         </Form>

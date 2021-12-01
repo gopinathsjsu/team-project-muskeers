@@ -5,21 +5,29 @@ router.post("/flightId",(req,res)=>{
     
     const flightIdQuery = "select flight_id from flight_table;";
 
-    pool.query(updateStatusQuery, [],(err,result)=>{
+    pool.query(flightIdQuery, [],(err,result)=>{
         console.log(result);
-        res.status(200).json({flight_id: result[0].flight_id});
+        res.status(200).json({flight_id: result});
     });
 });
 
 router.post("/bookFlight",(req,res)=>{
     console.log("inside book flight" + req.body);
     console.log("==============");
+    
     const flightId = req.body.flightId;
     const userId = req.body.userId;
     const flightDate = req.body.flightDate;
     const bookingDate = req.body.bookingDate;
     const price = req.body.price;
     const paymentID = req.body.paymentId;
+
+    console.log(flightId);
+    console.log(userId);
+    console.log(flightDate);
+    console.log(bookingDate);
+    console.log(price);
+    console.log(paymentID);
 
     console.log(flightId+"=============="+price);
 
@@ -39,7 +47,7 @@ console.log("-----------");
 
                 console.log(update_pointsresult);
                 console.log(err);
-                res.status(200).json({message: "updated user points"});
+                res.status(200).json({message:"updated"});
             });
 
 
