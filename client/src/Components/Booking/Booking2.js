@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Col, Form } from "react-bootstrap";
+import { Col, Form, Alert } from "react-bootstrap";
 import Axios from "axios";
 import endPointObj from "../../endPointObj";
-import { useHistory,Link} from "react-router-dom";
-import Button from '@material-ui/core/Button';
+import { useHistory, Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import "./booking2.css";
 //import {connect} from "react-redux"
 
 // import {booking_success} from "../../actions";
@@ -29,28 +30,33 @@ function Booking2(props) {
   const [alert, setAlert] = useState("");
   const handleSubmit = (userdata) => {};
   const parsedInfo = JSON.parse(sessionStorage.getItem("selectFlight"));
-   const [cardName,setcardname] =  useState("");
-   const [expiryDate,setexpiryDate] = useState("");
-   const [cvv,setcvv] = useState("");
-   const history = useHistory();
+  const [cardName, setcardname] = useState("");
+  const [expiryDate, setexpiryDate] = useState("");
+  const [cvv, setcvv] = useState("");
+  const history = useHistory();
   //-----------------------------const flightId = req.body.flightId;
   //gonna pass to booking api
   //const userId = localStorage.getItem('userId');
   const userId = localStorage.getItem("userId");
-  const useremail = localStorage.getItem('email_current');
+  const useremail = localStorage.getItem("email_current");
   const flightDate = parsedInfo.start_date;
-  const day= new Date(flightDate).getUTCDate();
-  const month =new Date(flightDate).getUTCMonth();
+  const day = new Date(flightDate).getUTCDate();
+  const month = new Date(flightDate).getUTCMonth() +1 ;
   const year = new Date(flightDate).getUTCFullYear();
-  const newDate  = year + "-" + month + "-" + day;
+  const newDate = year + "-" + month + "-" + day;
   const bookingDate = new Date();
-  const day1= new Date(bookingDate).getUTCDate();
-  const month1 =new Date(bookingDate).getUTCMonth();
+  console.log(bookingDate);
+  console.log(bookingDate.toISOString().slice(0, 10))
+  const day1 = new Date(bookingDate).getUTCDate();
+  console.log(day1);
+  const month1 = new Date(bookingDate).getUTCMonth() +1 ;
+  console.log(month1);
   const year1 = new Date(bookingDate).getUTCFullYear();
-  const newDate1  = year1 + "-" + month1 + "-" + day1;
+  const newDate1 = year1 + "-" + month1 + "-" + day1;
+  console.log(newDate1);
   const price = parsedInfo.price;
   const flightId = parsedInfo.flight_id;
-  const paymentId = "4";
+  //const paymentId = "4";
   //  const paymentID = "4"; ????//passing unique to the backend
 
   //------------------------------
@@ -63,12 +69,11 @@ function Booking2(props) {
   const end_time = parsedInfo.end_time;
   const startDate = parsedInfo.start_date;
 
-
   const redirect = () => {
     history.push({
-        pathname: '/thankyou',
+      pathname: "/thankyou",
     });
-};
+  };
 
   //--------
   //gonna pass to addpayment api
@@ -321,33 +326,27 @@ function Booking2(props) {
   //booking api call
 
   const handleAddPayment = () => {
-      
     return new Promise((resolve, reject) => {
-        Axios.post(endPointObj.url + "addPayment", {
-           userId,
-           cardName,
-           cvv,
-           expiryDate
+      Axios.post(endPointObj.url + "addPayment", {
+        userId,
+        cardName,
+        cvv,
+        expiryDate,
+      })
+        .then((response) => {
+          console.log(response);
+          setAlert("Payment added successfully");
+          sessionStorage.setItem("paymentId", response.data.paymentId)
         })
-          .then((response) => {
-            console.log(response);
-            setAlert("Payment added successfully");
-          })
-          .catch((e) => {
-            if (e.response && e.response.data) {
-              console.log(e.response.data.message);
-              setAlert(e.response.data.message);
-            }
-          });
-      });
-
-
-
-
-
+        .catch((e) => {
+          if (e.response && e.response.data) {
+            console.log(e.response.data.message);
+            setAlert(e.response.data.message);
+          }
+        });
+    });
   };
   const handleFlightBooking = (userdata) => {
-  
     console.log("In handleFlightBooking");
 
     // console.log(userdata);
@@ -368,21 +367,21 @@ function Booking2(props) {
     let mobileFlag = false;
 
     for (let i = 0; i < flightNoofPassengers; i++) {
-    //   if (emailPattern.test(this.traveler_details[i].email)) {
-    //     emailFlag = true;
-    //   } else {
-    //     emailFlag = false;
-    //     break;
-    //   }
+      //   if (emailPattern.test(this.traveler_details[i].email)) {
+      //     emailFlag = true;
+      //   } else {
+      //     emailFlag = false;
+      //     break;
+      //   }
     }
 
     for (let i = 0; i < flightNoofPassengers; i++) {
-    //   if (mobilePattern.test(this.traveler_details[i].phonenumber)) {
-    //     mobileFlag = true;
-    //   } else {
-    //     mobileFlag = false;
-    //     break;
-    //   }
+      //   if (mobilePattern.test(this.traveler_details[i].phonenumber)) {
+      //     mobileFlag = true;
+      //   } else {
+      //     mobileFlag = false;
+      //     break;
+      //   }
     }
 
     console.log("Email Flag : " + emailFlag);
@@ -401,66 +400,67 @@ function Booking2(props) {
     //       if (emailFlag) {
     //         if (ccPattern.test(ccEntry)) {
     //           if (this.validate_creditcardnumber(ccEntry)) {
-                // bookFlight(userdata)
-                //     .then((res) => {
-                //         console.log(res.status);
-                //         console.log(userdata.username);
-                //         if (res.status === 200) {
-                //             console.log("success");
-                //             let payload = {
-                //                 bookingType: "flight",
-                //                 userdata: userdata,
-                //                 traveler_details: this.traveler_details,
-                //                 billing_address: this.billing_address,
-                //                 payment_details: this.payment_details
-                //             };
-                //             //independent API to insert traveler details, billing address, and payment details
-                //             insertTravelerDetails(payload)
-                //                 .then((res) => {
-                //                     if (res.status === 200) {
-                //                         console.log("success");
-                //                         this.props.bookingSuccess(this.state, "booking_success");
-                //                         this.props.history.push("/payment/thankyou");
-                //                     }
-                //                     else {
-                //                         console.log("validation");
-                //                     }
-                //                 })
-                //                 .catch((err) => {
-                //                     console.log(err);
-                //                 });
-                //         }
-                //         else {
-                //             console.log("validation");
-                //         }
-                //     })
-                //     .catch((err) => {
-                //         console.log(err);
-                //     });
-  
-                return new Promise((resolve, reject) => {
-                   var flightDate = newDate;
-                   var bookingDate = newDate1;
-                  Axios.post(endPointObj.url + "bookFlight", {
-                    flightId,
-                    userId,
-                    flightDate,
-                    bookingDate,
-                    price,
-                    paymentId
-                  })
-                    .then((response) => {
-                      console.log(response);
-                      setAlert("Booking made successfully");
-                      redirect();
-                    })
-                    .catch((e) => {
-                      if (e.response && e.response.data) {
-                        console.log(e.response.data.message);
-                        setAlert(e.response.data.message);
-                      }
-                    });
-                });
+    // bookFlight(userdata)
+    //     .then((res) => {
+    //         console.log(res.status);
+    //         console.log(userdata.username);
+    //         if (res.status === 200) {
+    //             console.log("success");
+    //             let payload = {
+    //                 bookingType: "flight",
+    //                 userdata: userdata,
+    //                 traveler_details: this.traveler_details,
+    //                 billing_address: this.billing_address,
+    //                 payment_details: this.payment_details
+    //             };
+    //             //independent API to insert traveler details, billing address, and payment details
+    //             insertTravelerDetails(payload)
+    //                 .then((res) => {
+    //                     if (res.status === 200) {
+    //                         console.log("success");
+    //                         this.props.bookingSuccess(this.state, "booking_success");
+    //                         this.props.history.push("/payment/thankyou");
+    //                     }
+    //                     else {
+    //                         console.log("validation");
+    //                     }
+    //                 })
+    //                 .catch((err) => {
+    //                     console.log(err);
+    //                 });
+    //         }
+    //         else {
+    //             console.log("validation");
+    //         }
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     });
+
+    return new Promise((resolve, reject) => {
+      var flightDate = newDate;
+      var bookingDate = newDate1;
+      var paymentId = sessionStorage.getItem("paymentId")
+      Axios.post(endPointObj.url + "bookFlight", {
+        flightId,
+        userId,
+        flightDate,
+        bookingDate,
+        price,
+        paymentId,
+      })
+        .then((response) => {
+          console.log(response);
+          setAlert("Booking made successfully");
+          redirect();
+        })
+        .catch((e) => {
+          if (e.response && e.response.data) {
+            console.log(e.response.data.message);
+            setAlert(e.response.data.message);
+          }
+        });
+    });
     //           } else {
     //             //  showAlert("Enter a valid CC number", "error", this);
     //           }
@@ -918,12 +918,18 @@ function Booking2(props) {
                           </div>
                           <div className="col-sm-4">
                             <button
-                              className="btn-block btn-success btn-group-sm"
+                              className="book add-payment"
                               type="button"
                               onClick={handleAddPayment}
                             >
                               ADD PAYMENT
                             </button>
+
+                            {alert.length > 0 && (
+                              <Alert className="alert-payment" key="0" variant="success">
+                                {alert}
+                              </Alert>
+                            )}
                           </div>
                         </div>
                         <div className="col-sm-12">
@@ -963,20 +969,15 @@ function Booking2(props) {
                         </div>
                         <div className="col-sm-12">
                           <div className="col-sm-6">
-                             <Button
-                              className="btn-block btn-success btn-group-sm"
+                            <Button
+                              className="book"
                               type="button"
-                              
                               onClick={handleFlightBooking}
                             >
                               BOOK
-                            </Button> 
+                            </Button>
+                          </div>
 
-
-                            </div>
-                
-
-                      
                           {/* <AlertContainer ref={a => this.msg = a} {...alertOptions}/> */}
                         </div>
                       </div>

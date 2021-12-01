@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import {Alert} from 'react-bootstrap';
 import Button from '@material-ui/core/Button'
 import { DetailLabel } from './detail-label.js';
 import { PriceInfo } from './price-info';
@@ -71,6 +72,9 @@ const handlebookingpayment = (a) => {
   
   return (
   <div>
+  {(props.dataParentToChild.result == undefined || props.dataParentToChild.result.length == 0) && <Alert className="no-flights" variant="secondary">
+    No flights available
+  </Alert>}
  {props.dataParentToChild.result && props.dataParentToChild.result.map((a) =>(
     <Card classname = "card-width"> 
       <section className={`Flight-info ${isMultiMode ? 'gray-background' : ''}`}>
