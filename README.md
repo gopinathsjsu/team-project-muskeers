@@ -21,7 +21,7 @@
 * Monday
 * Saturday
 
-### Tasks 
+# Tasks 
  
 * Frontend and deployment : Alihussain Ladiwala, Geetika Kapil
 * Backend and Database  : Sai Nikhil Yandamuri, Karan Pinakinbhai Jariwala
