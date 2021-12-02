@@ -69,7 +69,7 @@ export const SearchForm = (props) => {
       <Card.Body>
         <Form className="search-form-container">
           <Form.Group>
-            <Form.Check
+            {/*<Form.Check
               inline
               checked={!isReturn}
               type="radio"
@@ -86,7 +86,7 @@ export const SearchForm = (props) => {
               name="flightType"
               id="formHorizontalRadios2"
               onChange={(e) => setFlightType(true)}
-            />
+            />*/}
           </Form.Group>
 
           <Form.Group controlId="formGridOrigin">

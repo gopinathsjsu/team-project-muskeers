@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ListGroup, Button, Row, Col, Modal } from "react-bootstrap";
+import { ListGroup, Button, Row, Col, Modal,Alert } from "react-bootstrap";
 import Axios from "axios";
 import endPointObj from "../../endPointObj";
 import "./ListBookings.css"
@@ -7,7 +7,7 @@ import "./ListBookings.css"
 const ListBookings = () => {
   const [flights, setFlights] = useState([]);
   const [show, setShow] = useState(false);
-
+  const [alertOwe, setAlertOwe] = useState('');
   const [bookingId, setBookingId] = useState(0);
   const [flightId, setFlightId] = useState(0);
   const [flightDate, setflightDate] = useState(new Date());
@@ -64,10 +64,17 @@ const ListBookings = () => {
     getFlights().then((data) => {
       // do nothin
     });
+    if(flights.length==0)
+    setAlertOwe("No bookings avialable");
   }, []);
 
   return (
     <div>
+      {(flights.length == 0) && <Alert className="no-flights" variant="secondary">
+    No Bookings made yet
+  </Alert>}
+      
+                
 
 <>
 
