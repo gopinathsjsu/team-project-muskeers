@@ -20,6 +20,7 @@ function AdminDash(props) {
     const [startTime, onStartTimeChange] = useState(null);
     const [endTime, onEndTimeChange] = useState(null);
     const [flightIds, setflightIds] = useState([]);
+    const [price, setPrice] = useState('');
 
     const [updateDate, setUpdateDate] = useState(new Date());
     const [view, changeView] = useState('createFlight');
@@ -59,12 +60,12 @@ function AdminDash(props) {
 
         console.log("creating flight")
 
-        console.log(source, destination, startTime, endTime, startDate, endDate)
+        console.log(source, destination, startTime, endTime, startDate, endDate, price)
 
 
 
 
-        Axios.post(endPointObj.url + 'createFlight', { source, destination, startTime, endTime, startDate, endDate }).then((response) => {
+        Axios.post(endPointObj.url + 'createFlight', { source, destination, startTime, endTime, startDate, endDate, price }).then((response) => {
 
 
             console.log("flight created sucessfully");
@@ -201,7 +202,10 @@ function AdminDash(props) {
                             <Col sm={10}><Form.Control type="time" className="date" name="dob" placeholder="Date of Birth" selected={endTime} onChange={(e) => { onEndTimeChange(e.target.value) }} /></Col>
                         </Row>
 
-
+                        <Row>
+                            <Col sm={2} className="dateLabel">Price</Col>
+                            <Col sm={10}><Form.Control type="text" className="date" name="price" placeholder="Price" onChange={(e) => { setPrice(e.target.value) }} /></Col>
+                        </Row>
 
 
 
