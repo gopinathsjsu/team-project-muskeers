@@ -43,6 +43,7 @@ function AdminList(props) {
                     <ListGroup.Item key={a.flight_id} value={a.flight_id}>
                         <Row>
                             <Col xs={10}>
+                                flightId: {a.flight_id} &nbsp;
                                 source: {a.source_city} &nbsp;
                                 destination: {a.source_city} &nbsp;
                                 time: {a.start_time} &nbsp;
@@ -53,7 +54,7 @@ function AdminList(props) {
                                     {a.status}
                                 </Alert>}
 
-                                
+
                                 {a.status != "SCHEDULED" && <Alert variant="danger" className="alert-list">
                                     {a.status}
                                 </Alert>}
