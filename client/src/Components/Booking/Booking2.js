@@ -242,8 +242,8 @@ function Booking2(props) {
           price
         })
           .then((response) => {
-            console.log(response);
-            //setAlert("Payment added successfully");
+            //console.log(response);
+            setAlert(response.data.message);
             sessionStorage.setItem("paymentId", response.data.paymentId)
           })
           .catch((e) => {
@@ -568,7 +568,7 @@ function Booking2(props) {
                         <br />
                         <Form.Group as={Col} controlId="formGridState">
 
-                          <Form.Select placeholder="status" className="status" onChange={(e) => { setPayment(e.target.value) }}>
+                          <Form.Select placeholder="status" className="status" onChange={(e) => { setPayment(e.target.value); setAlert("") }}>
 
                             <option>CARD</option>
                             <option>MILES</option>
