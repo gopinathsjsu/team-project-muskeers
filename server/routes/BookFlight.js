@@ -50,14 +50,8 @@ console.log("-----------");
                 res.status(200).json({message:"updated"});
             });
 
-
-            //console.log(update_result);
-            //res.status(200).json({message: "updated available tickets"});
         });
 
-
-        //console.log(result);
-        //res.status(200).json({message: "Successfully added your booking"});
     });
 });
 
