@@ -7,23 +7,13 @@ import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import TextField from "@material-ui/core/TextField";
 import mainLogo from "../resources/flight2.png";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
 
-//<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
-
-//import { useDispatch, useSelector } from "react-redux";
-
 function UserProfile(props) {
-  
   const useStyles = makeStyles({
     root: {
       minWidth: 30,
@@ -65,12 +55,6 @@ function UserProfile(props) {
     },
   }));
 
-  // const useStyles = makeStyles((theme) => ({
-  //   root: {
-  //     flexGrow: 1,
-  //   },
-  // }));
-
   const useStylesProfile = makeStyles((theme) => ({
     root: {
       display: "flex",
@@ -101,13 +85,11 @@ function UserProfile(props) {
   const [alert, setAlert] = useState("");
 
   const history = useHistory();
-  
 
   const changeNameHandler = (e) => {
     setName(e.target.value);
   };
 
- 
   const addressChangeHandler = (e) => {
     setAddress(e.target.value);
   };
@@ -115,135 +97,28 @@ function UserProfile(props) {
   const changePhoneHandler = (e) => {
     setAddress(e.target.value);
   };
-  
+
   const getAccountDetails = () => {
     return new Promise((resolve, reject) => {
-      var email = localStorage.getItem('email_current');
+      var email = localStorage.getItem("email_current");
       console.log(email);
-      Axios.post(
-        endPointObj.url + "getProfile",
-        {
-           email,
-        }
-      ).then((response) => {
+      Axios.post(endPointObj.url + "getProfile", {
+        email,
+      }).then((response) => {
         resolve(response);
       });
     });
   };
-  // const updateAccountDetails = (email, name, gender, address, phone, file) => {
-  //   return new Promise((resolve, reject) => {
-  //     Axios.post(
-  //       endPointObj.url + "api/updateProfile",
-  //       {
-  //         email,
-  //         name,
-  //         gender,
-  //         address,
-  //         phone,
-  //         file,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: "jwt " + sessionStorage.getItem("token"),
-  //         },
-  //       }
-  //     ).then((response) => {
-  //       getAccountDetails().then((result) => {
-  //         setEmail(result.data.email);
-  //         setURL(result.data[0].profile_picture);
-  //         setName(result.data[0].name);
-  //         setAddress(result.data[0].address);
-  //         setGender(result.data[0].gender);
-  //         setPhone(result.data[0].phone);
-  //       });
 
-  //       if (file) {
-  //         //   fileUpload(file);
-  //       }
-
-  //       resolve(response);
-  //     });
-  //   });
-  // };
-
-  // function fileChangehandler(event) {
-  //   console.log(event.target.files[0]);
-  //   setFile(event.target.files[0]);
-  //   setURL(URL.createObjectURL(event.target.files[0]));
-  // }
-
-  // function fileUpload(file) {
-  //   const data = new FormData();
-  //   data.append("name", "file_name.jpg");
-  //   console.log(file);
-  //   data.append("file", file);
-  //   console.log(data.file);
-
-  // //   //Axios.post(endPointObj.url + "api/uploadImage/" + email, data)
-  // //     .then((res) => {})
-  // //     .catch((err) => {
-  // //       getAccountDetails().then((result) => {
-  // //         setEmail(result.data.email);
-  // //         setURL(result.data[0].profile_picture);
-
-  // //         setName(result.data[0].name);
-  // //         setAddress(result.data[0].address);
-  // //         setGender(result.data[0].gender);
-  // //         setPhone(result.data[0].description);
-  // //       });
-
-  // //       console.log(err);
-  // //     });
-  // // }
   useEffect(() => {
     getAccountDetails().then((result) => {
-      //setEmail(result.data.user_email);
-      // if (result.data[0].profile_picture) {
-      //   setURL(result.data[0].profile_picture);
-      // }
       console.log(result);
       setName(result.data.name);
       setAddress(result.data.address);
       setflyingcredit(result.data.flyingCredits);
       setPhone(result.data.phone);
     });
-
-    // };
   }, []);
-
-  // const updateProfile = (email, name, gender, address, phone, file) => {
-  //   updateAccountDetails(email, name, gender, address, phone, file);
-  // };
-
-  // const registerUser = (e) => {
-  //     let role = "admin"
-  //     console.log(name, email, password);
-
-  //     const redirect = () => {
-  //         history.push({
-  //             pathname: '/adminDash',
-  //         });
-  //     };
-
-  //     e.preventDefault();
-  //     return new Promise((resolve, reject) => {
-  //         console.log(name, email, password);
-  //         Axios.post(endPointObj.url + 'signup', { name, email, password, role }).then((response) => {
-  //             resolve(response);
-
-  //             if(role === 'admin'){
-  //                 redirect();
-  //             }
-
-  //         }).catch((e) => {
-  //             if (e.response && e.response.data) {
-  //                 console.log(e.response.data.message);
-  //                 setAlert(e.response.data.message);
-  //             }
-
-  //         })
-  //     })
-  // }
 
   return (
     <div className="myaccount-bg">
@@ -306,39 +181,9 @@ function UserProfile(props) {
                         />
                       </form>
                     </Grid>
-                    {/* <Grid item xs={6}>
-                              <form
-                                className={formStyles.root}
-                                noValidate
-                                autoComplete="off"
-                              >
-                                <TextField
-                                  id="standard-basic"
-                                  label="topics"
-                                  onChange={(e) => changeTopicsHandler(e)}
-                                />
-                              </form>
-                            </Grid> */}
 
                     <Grid item xs={6}></Grid>
-                    <Grid item xs={6} className="upload-button">
-                      {/* <Button
-                        variant="primary"
-                        color="primary"
-                        onClick={() => {
-                          updateProfile(
-                            //             email,
-                            name,
-                            gender,
-                            address,
-                            phone,
-                            file
-                          );
-                        }}
-                      >
-                        Update Profile
-                      </Button> */}
-                    </Grid>
+                    <Grid item xs={6} className="upload-button"></Grid>
                   </Grid>
                 </div>
               </div>
@@ -349,18 +194,6 @@ function UserProfile(props) {
                   className={profileClasses.large}
                   src={url}
                 />
-                  {/* <div className="profile-edit-button">
-                    <label for="file">
-                      <i class="fas fa-pen-square fa-lg" />
-                    </label>
-                    <input
-                      //className="hide-button"
-                      type="file"
-                      id="file"
-                      accept=".jpg"
-                      onChange={(e) => fileChangehandler(e)}
-                    />
-                  </div> */}
               </div>
               <div className="profile-image2">
                 <Card className={classes.root}>

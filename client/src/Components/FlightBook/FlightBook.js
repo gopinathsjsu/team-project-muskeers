@@ -1,27 +1,25 @@
-//import React, { useEffect } from 'react';
 import React, { useState } from "react";
-import './FlightBook.css';
-//import { connect } from 'react-redux';
-import SearchForm from './SearchForm.js';
-import FlightInfo from './FlightInfo.js';
-import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
+import "./FlightBook.css";
+import SearchForm from "./SearchForm.js";
+import FlightInfo from "./FlightInfo.js";
+import {
+  CountryDropdown,
+  RegionDropdown,
+  CountryRegionData,
+} from "react-country-region-selector";
 
 function FlightBook(props) {
-  
   const [criteria, setCriteria] = useState([]);
 
-  
-  const handleCallback = (childData) =>{
+  const handleCallback = (childData) => {
     setCriteria(childData);
-}
+  };
 
-
-console.log("In parent");
- console.log(criteria);
+  console.log("In parent");
+  console.log(criteria);
   console.log(criteria.source);
   console.log(criteria.destination);
   console.log(criteria.startDate);
-
 
   return (
     <div className="App">
@@ -30,20 +28,12 @@ console.log("In parent");
           <SearchForm sendToParent={handleCallback}></SearchForm>
         </aside>
         <section className="Results-section">
-        <FlightInfo dataParentToChild = {criteria}/>            
+          <FlightInfo dataParentToChild={criteria} />
         </section>
       </section>
-      <section>
-      
-      </section>
-
-            
+      <section></section>
     </div>
   );
 }
 
-
-
-
 export default FlightBook;
-
