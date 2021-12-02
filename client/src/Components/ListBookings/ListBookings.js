@@ -101,11 +101,13 @@ const ListBookings = () => {
           <ListGroup.Item key={a.flight_id} value={a.flight_id}>
             <Row>
               <Col xs={11}>
-                source: {a.source_city} &nbsp;
-                destination: {a.destination_city} &nbsp;
-                bookingDate: {a.booking_date.substring(0, 10)} &nbsp;
-                flightDate: {a.flight_date.substring(0, 10)} &nbsp;
-                booking_id: {a.booking_id} &nbsp;
+                <b>booking_id</b>: {a.booking_id} &nbsp;
+                <b>Source</b>: {a.source_city} &nbsp;
+                <b>destination</b>: {a.destination_city} &nbsp;
+                <br></br>
+                <b>bookingDate</b>: {a.booking_date.substring(0, 10)} &nbsp;
+                <b>flightDate</b>: {a.flight_date.substring(0, 10)} &nbsp;
+                
 
               </Col>
               <Col xs={1}>
