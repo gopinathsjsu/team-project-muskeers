@@ -17,7 +17,7 @@ const ListBookings = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = (bookingId, flightId, flightDate, bookingDate, price) => {
-
+    console.log(bookingId, flightId, flightDate, bookingDate, price);
     setBookingId(bookingId)
     setFlightId(flightId)
     setflightDate(flightDate)
@@ -98,7 +98,7 @@ const ListBookings = () => {
                 destination: {a.destination_city} &nbsp;
                 bookingDate: {a.booking_date.substring(0, 10)} &nbsp;
                 flightDate: {a.flight_date.substring(0, 10)} &nbsp;
-
+                booking_id: {a.booking_id} &nbsp;
 
               </Col>
               <Col xs={1}>

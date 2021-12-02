@@ -59,6 +59,7 @@ router.post("/cancelBooking",(req,res)=>{
     console.log("inside cancel booked flight");
     console.log("==============");
     const bookingId = req.body.bookingId;
+    console.log(bookingId+"++++++");
     const flightId = req.body.flightId;
     const userId = req.body.userId;
     const flightDate = req.body.flightDate;
