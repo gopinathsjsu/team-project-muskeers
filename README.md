@@ -94,6 +94,8 @@ Below listed are decisions/use cases considered for features provided by the onl
 # Sprint Journal:
 ![](documentation/KaranPinakinbhaiJariwala.jpeg)
 
+![](documentation/Geetikakapil.PNG)
+
 ![](documentation/AlihussainLadiwala.PNG)
 
 ![](documentation/SaiNikhilYandamuri.PNG)
