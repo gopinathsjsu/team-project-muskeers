@@ -36,10 +36,10 @@
 ![](documentation/ComponentDiagram.jpeg)
 
 
-# Deplyment Diagram:
+# Deployment Diagram:
 ![](documentation/DeploymentDiagram.jpeg)
 
-# Deplyment Diagram:
+# EC2 Deployment with Load Balancer:
 * Created 2 instances and deployed application on both of them.
 
 ![](documentation/ec2instances.PNG)
