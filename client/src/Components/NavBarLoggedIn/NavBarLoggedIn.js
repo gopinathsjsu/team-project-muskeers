@@ -59,7 +59,7 @@ function NavBarLoggedIn(props) {
 
                     <Dropdown >
                         <Dropdown.Toggle variant="secondary" className="dropdown-align" id="dropdown-basic">
-                        <i class="fas fa-cog"></i>
+                        <i class="fas fa-user"></i>
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
