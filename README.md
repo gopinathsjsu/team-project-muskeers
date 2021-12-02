@@ -36,8 +36,18 @@
 ![](documentation/ComponentDiagram.jpeg)
 
 
-# Deplyment Diagram:
+# Deployment Diagram:
 ![](documentation/DeploymentDiagram.jpeg)
+
+# EC2 Deployment with Load Balancer:
+* Created 2 instances and deployed application on both of them.
+
+![](documentation/ec2instances.PNG)
+
+* Created load balancer and added those 2 instances in it.
+
+![](documentation/loadBalancer.PNG)
+
 
 # Extreme programming (XP) Core Values Implemented:
 * Simplicity
