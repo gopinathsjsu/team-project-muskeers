@@ -35,6 +35,7 @@ function Login() {
                     console.log(response);
                     localStorage.setItem('userId', response.data.success.userId);
                     localStorage.setItem('email_current', response.data.success.email);
+                    
                     redirect("/FlightBook");
                 }
 

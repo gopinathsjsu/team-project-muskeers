@@ -254,7 +254,7 @@ function AdminDash(props) {
 
 
                             <Row>
-                                <Col sm={2} className="dateLabel">End Date</Col>
+                                <Col sm={2} className="dateLabel">Select Date</Col>
                                 <Col sm={10}> <Form.Control type="date" className="date" selected={updateDate} onChange={(e) => { setUpdateDate(e.target.value) }} placeholder="Date of Birth" /></Col>
                             </Row>
                             <br></br>

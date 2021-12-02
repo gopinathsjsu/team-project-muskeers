@@ -37,7 +37,9 @@ function Register(props) {
                 }
                 else {
                     console.log(response);
-                    localStorage.setItem('userId', response.data.username);
+                    localStorage.setItem('userId', response.data.userId);
+                    localStorage.setItem('email_current', response.data.email);
+                    console.log("Zing Zing Amazing");
                     redirect("/FlightBook");
                 }
 
