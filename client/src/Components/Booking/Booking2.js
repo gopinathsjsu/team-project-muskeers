@@ -572,7 +572,7 @@ function Booking2(props) {
                               <Alert
                                 className="alert-payment"
                                 key="0"
-                                variant="success"
+                                variant="primary"
                               >
                                 {alert}
                               </Alert>
