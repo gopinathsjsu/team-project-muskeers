@@ -32,6 +32,9 @@
 # Database Design:
 ![](documentation/database.jpg)
 
+# Deplyment Diagram:
+![](documentation/DeploymentDiagram.jpeg)
+
 # Extreme programming (XP) Core Values Implemented:
 * Simplicity
   * We used a critical eye to determine the most important aspects of the project scope and only did what was required.
