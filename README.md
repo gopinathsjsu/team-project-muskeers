@@ -99,7 +99,7 @@ Below listed are decisions/use cases considered for features provided by the onl
 ![](documentation/AlihussainLadiwala.PNG)
 
 ## Sprint Sheet
-https://github.com/gopinathsjsu/team-project-muskeers/blob/master/documentation/Sprint%20Sheet.xlsx
+https://github.com/gopinathsjsu/team-project-muskeers/raw/master/documentation/Sprint%20Sheet%20202.xlsx
 
 # How to run the web-app:
 * Step 1: Clone the app by command " git clone https://github.com/gopinathsjsu/team-project-muskeers.git"
