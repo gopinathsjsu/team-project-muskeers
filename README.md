@@ -41,10 +41,10 @@
 
 # Deplyment Diagram:
 * Created 2 instances and deployed application on both of them.
-![](documentation/ec2instances.jpeg)
+![](documentation/ec2instances.PNG)
 
 * Created load balancer and added those 2 instances in it.
-![](documentation/loadBalancer.jpeg)
+![](documentation/loadBalancer.PNG)
 
 
 # Extreme programming (XP) Core Values Implemented:
