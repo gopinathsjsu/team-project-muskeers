@@ -74,7 +74,7 @@ Below listed are decisions/use cases considered for features provided by the onl
 5. View Bookings
 6. Cancel Bookings
 
-
+# Sprint Journal:
 ![](documentation/KaranPinakinbhaiJariwala.jpeg)
 
 ![](documentation/SaiNikhilYandamuri.PNG)
