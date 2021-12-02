@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NavBar from 'react-bootstrap/NavBar';
+//import NavBar from 'react-bootstrap/NavBar';
 import { Container, Nav,Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import "./NavBarClient.css"
@@ -79,7 +79,7 @@ function NavBarClient(props) {
     
     return (
         <div>
-            <NavBar bg="dark" variant="dark">
+            {/* <NavBar bg="dark" variant="dark">
                 <Container>
                     <NavBar.Brand href="#home">Airline Booking</NavBar.Brand>
 
@@ -142,7 +142,7 @@ function NavBarClient(props) {
                     
                     </div>
                 </Container>
-            </NavBar>
+            </NavBar> */}
         </div>
     );
 }
