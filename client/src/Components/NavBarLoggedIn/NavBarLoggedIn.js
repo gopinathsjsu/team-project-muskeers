@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import NavBar from 'react-bootstrap/NavBar';
-import { Container, Nav } from 'react-bootstrap';
+import { Container, Nav, Dropdown } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import "./NavBarLoggedIn.css"
+
+
 
 
 function NavBarLoggedIn(props) {
@@ -32,6 +34,15 @@ function NavBarLoggedIn(props) {
 
     };
 
+    const logout = () => {
+        console.log("log out");
+        sessionStorage.clear();
+        localStorage.clear();
+        history.push({
+          pathname: "/",
+        });
+    }
+
     return (
         <div>
             <NavBar bg="dark" variant="dark">
@@ -43,13 +54,24 @@ function NavBarLoggedIn(props) {
                         <Nav.Link  className = {flagModify? "white": "regular"} onClick={()=>{redirect("/adminDash")}}>Modify</Nav.Link> */}
                         <Nav.Link onClick={() => { redirect("/adminList") }}>List</Nav.Link>
                         <Nav.Link onClick={() => { redirect("/adminDash") }}>Modify</Nav.Link>
-                        
+
                     </Nav>
-                    <div>
 
+                    <Dropdown >
+                        <Dropdown.Toggle variant="secondary" className="dropdown-align" id="dropdown-basic">
+                        <i class="fas fa-cog"></i>
+                        </Dropdown.Toggle>
 
-                    </div>
+                        <Dropdown.Menu>
+                            <Dropdown.Item onClick={()=>{logout()}}>Logout</Dropdown.Item>
+                        
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </Container>
+
+
+
+
             </NavBar>
         </div>
     );

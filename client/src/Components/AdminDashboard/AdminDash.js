@@ -84,7 +84,7 @@ function AdminDash(props) {
 
     }
 
-    let updateFlight = (e) => {
+    let updateFlight = (e,flightId, flightStatus, updateDate) => {
 
         e.preventDefault()
 
@@ -221,6 +221,7 @@ function AdminDash(props) {
                         <Form>
                             <Form.Group as={Col} controlId="formGridState">
                                 <Form.Select aria-label="Default select example" onChange={(e)=>{setflightId(e.target.value)}}>
+                                <option value="none" selected disabled>Select a flight ID</option>
                                     {flightIds.map((a) => (
                                         <option key={a.flight_id} value={a.flight_id}>
                                             {a.flight_id}
@@ -234,7 +235,8 @@ function AdminDash(props) {
 
                             <Form.Group as={Col} controlId="formGridState">
 
-                                <Form.Select placeholder="status" className="status" onChange={(e) => { setFlightStatus(e.target.value) }}>
+                                <Form.Select placeholder="status" className="status" onChange={(e) => { console.log(e.target.value);setFlightStatus(e.target.value) }}>
+                                <option value="none" selected disabled>Select a status</option>
                                     <option>CANCEL</option>
                                     <option>DELAYED</option>
                                 </Form.Select>
@@ -248,7 +250,7 @@ function AdminDash(props) {
                             />
                             <br></br>
 
-                            <Button variant="primary" onClick={(e) => { updateFlight(e) }} className="submit-update" type="submit">
+                            <Button variant="primary" onClick={(e) => { updateFlight(e,flightId, flightStatus, updateDate) }} className="submit-update" type="submit">
                                 Submit
                             </Button>
                         </Form>

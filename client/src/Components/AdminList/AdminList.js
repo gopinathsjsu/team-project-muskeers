@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup, Row, Col, Alert } from 'react-bootstrap';
 import Axios from 'axios';
 import endPointObj from '../../endPointObj'
+import "./AdminList.css"
 
 function AdminList(props) {
 
@@ -38,11 +39,27 @@ function AdminList(props) {
     return (
         <div>
             <ListGroup>
-                <ListGroup.Item disabled>Cras justo odio</ListGroup.Item>
-
                 {flights.map((a) => (
                     <ListGroup.Item key={a.flight_id} value={a.flight_id}>
-                        {a.source_city}
+                        <Row>
+                            <Col xs={10}>
+                                source: {a.source_city} &nbsp;
+                                destination: {a.source_city} &nbsp;
+                                time: {a.start_time} &nbsp;
+                            </Col>
+                            <Col xs={2}>
+
+                                {a.status == "SCHEDULED" && <Alert variant="success" className="alert-list">
+                                    {a.status}
+                                </Alert>}
+
+                                
+                                {a.status != "SCHEDULED" && <Alert variant="danger" className="alert-list">
+                                    {a.status}
+                                </Alert>}
+
+                            </Col>
+                        </Row>
                     </ListGroup.Item>
                 ))}
 
