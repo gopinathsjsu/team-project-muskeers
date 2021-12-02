@@ -59,6 +59,7 @@ function AdminDash(props) {
         //console.log(src, dest, startT, endT);
 
         console.log("creating flight")
+        console.log(startDate)
 
         console.log(source, destination, startTime, endTime, startDate, endDate, price)
 
@@ -85,14 +86,16 @@ function AdminDash(props) {
 
     }
 
-    let updateFlight = (e,flightId, flightStatus, updateDate) => {
+    let updateFlight = (e, flightId, status, date) => {
 
         e.preventDefault()
+
+
 
         console.log(flightId, flightStatus, updateDate);
 
 
-        Axios.post(endPointObj.url + 'updateStatus', { flightId, flightStatus, updateDate }).then((response) => {
+        Axios.post(endPointObj.url + 'updateStatus', { flightId, status, date }).then((response) => {
 
 
             console.log("flight updated sucessfully");
@@ -224,37 +227,39 @@ function AdminDash(props) {
 
                         <Form>
                             <Form.Group as={Col} controlId="formGridState">
-                                <Form.Select aria-label="Default select example" onChange={(e)=>{setflightId(e.target.value)}}>
-                                <option value="none" selected disabled>Select a flight ID</option>
+                                <Form.Select aria-label="Default select example" onChange={(e) => { setflightId(e.target.value) }}>
+                                    <option value="none" selected disabled>Select a flight ID</option>
                                     {flightIds.map((a) => (
                                         <option key={a.flight_id} value={a.flight_id}>
                                             {a.flight_id}
                                         </option>
-                                         ))}
-                                    
+                                    ))}
+
                                 </Form.Select>
-                                
-                               
+
+
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridState">
 
-                                <Form.Select placeholder="status" className="status" onChange={(e) => { console.log(e.target.value);setFlightStatus(e.target.value) }}>
-                                <option value="none" selected disabled>Select a status</option>
+                                <Form.Select placeholder="status" className="status" onChange={(e) => { console.log(e.target.value); setFlightStatus(e.target.value) }}>
+                                    <option value="none" selected disabled>Select a status</option>
                                     <option>CANCEL</option>
                                     <option>DELAYED</option>
                                 </Form.Select>
                             </Form.Group>
 
-                            <Form.Label>End Time</Form.Label>
-                            <DateTimePicker
-                                className="end-time-update"
-                                onChange={(val) => { setUpdateDate(val) }}
-                                value={updateDate}
-                            />
+
+
+
+
+                            <Row>
+                                <Col sm={2} className="dateLabel">End Date</Col>
+                                <Col sm={10}> <Form.Control type="date" className="date" selected={updateDate} onChange={(e) => { setUpdateDate(e.target.value) }} placeholder="Date of Birth" /></Col>
+                            </Row>
                             <br></br>
 
-                            <Button variant="primary" onClick={(e) => { updateFlight(e,flightId, flightStatus, updateDate) }} className="submit-update" type="submit">
+                            <Button variant="primary" onClick={(e) => { updateFlight(e, flightId, flightStatus, updateDate) }} className="submit-update" type="submit">
                                 Submit
                             </Button>
                         </Form>

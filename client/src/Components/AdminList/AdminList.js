@@ -48,6 +48,7 @@ function AdminList(props) {
                                 <b>destination</b>: {a.source_city} &nbsp;
                                 <b>time</b>: {a.start_time} &nbsp;
                                 <b>Date</b>: {a.start_date.substring(0,10)} &nbsp;
+
                             </Col>
                             <Col xs={2}>
 
@@ -55,7 +56,7 @@ function AdminList(props) {
                                     {a.status}
                                 </Alert>}
 
-                                
+
                                 {a.status != "SCHEDULED" && <Alert variant="danger" className="alert-list">
                                     {a.status}
                                 </Alert>}
