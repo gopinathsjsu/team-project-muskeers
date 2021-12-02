@@ -39,7 +39,11 @@ function FlightInfo(props) {
             >
               <FlightLogo></FlightLogo>
               <DetailLabel
+<<<<<<< HEAD
                 mainText="FlightId"
+=======
+                mainText= "FlightId"
+>>>>>>> 69806512b844e655197b08341774884128d459d8
                 subText={a.flight_id}
               ></DetailLabel>
               <br />
