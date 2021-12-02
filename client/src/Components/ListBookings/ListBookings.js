@@ -70,7 +70,7 @@ const ListBookings = () => {
 
   return (
     <div>
-      {(flights.length == 0) && <Alert className="no-flights" variant="secondary">
+      {(flights.length == 0) && <Alert className="no-flights-list" variant="secondary">
     No Bookings made yet
   </Alert>}
       
