@@ -26,6 +26,7 @@
     height: 70vh;
     width: 50vw !important;
     margin-top:5vh;
+    padding: 0;
 }
 
 .admin-alert{
@@ -60,7 +61,10 @@
     margin-left: 20px !important
    
 }
-
+.basic-example{
+    padding: 0;
+    width: 50vw
+}
 .form-data{
     margin-left: 30px;
 }
@@ -75,17 +79,28 @@
 
 .date{
     margin-top: 10px;
-    width: 35.5vw;
+    width: 35.15vw;
   
 }
 
 .status{
     margin-top: 10px;
+    border-radius:5px; 
+    border-color: #adb5bd !important;
+    width:43vw;
+    
+}
+
+.flightId{
+    margin-top: 10px;
+    border-radius:5px; 
+    border-color: #adb5bd !important;
+    width:43vw;
 }
 
 
 .dateLabel {
-    margin-top: 13px;
+    margin-top: 17px;
     
 }
 

@@ -138,7 +138,7 @@ function AdminDash(props) {
 
         <Col md={{ span: 6, offset: 3 }} className="admin-dash-align">
             <Row>
-                <ButtonGroup aria-label="Basic example" >
+                <ButtonGroup aria-label="Basic example" className="basic-example" >
                     <Button variant={variantCreate} onClick={() => { changeView("createFlight"); changeColor("createFlight") }}>Create Flight</Button>
                     <Button variant={variantUpdate} onClick={() => { changeView("updateFlight"); changeColor("updateFlight") }}>Update Flight</Button>
                     {/* <Button variant={variantDelete} onClick={() => { changeView("deleteFlight"); changeColor("deleteFlight") }}>Delete Flight</Button> */}
@@ -226,7 +226,7 @@ function AdminDash(props) {
                     {view == 'updateFlight' && <Card.Body className="form-data">
 
                         <Form>
-                            <Form.Group as={Col} controlId="formGridState">
+                            <Form.Group as={Col} controlId="formGridState" className="flightId">
                                 <Form.Select aria-label="Default select example" onChange={(e) => { setflightId(e.target.value) }}>
                                     <option value="none" selected disabled>Select a flight ID</option>
                                     {flightIds.map((a) => (

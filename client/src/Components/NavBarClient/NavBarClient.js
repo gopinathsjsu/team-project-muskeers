@@ -108,7 +108,7 @@ function NavBarClient(props) {
                                 ></Avatar>
                             </div>
                             &nbsp; &nbsp;
-                            <i class="fas fa-angle-down icon-down"></i>
+                            
                         </Button>
 
                         <StyledMenu
