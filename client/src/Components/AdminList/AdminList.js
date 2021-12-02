@@ -45,7 +45,7 @@ function AdminList(props) {
                             <Col xs={10}>
                                 <b>Flight ID</b>: {a.flight_id} &nbsp;
                                 <b>Source</b>: {a.source_city} &nbsp;
-                                <b>Destination</b>: {a.source_city} &nbsp; 
+                                <b>Destination</b>: {a.destination_city} &nbsp; 
                                 <br></br><b>Start time</b>: {a.start_time} &nbsp;
                                 <b>End time</b>: {a.end_time} &nbsp;
                                 <b>Date</b>: {a.start_date.substring(0,10)} &nbsp;
