@@ -39,7 +39,7 @@ function FlightInfo(props) {
             >
               <FlightLogo></FlightLogo>
               <DetailLabel
-                mainText={a.source_city}
+                mainText="FlightId"
                 subText={a.flight_id}
               ></DetailLabel>
               <br />
@@ -54,7 +54,7 @@ function FlightInfo(props) {
               ></DetailLabel>
               <DetailLabel
                 mainText={a.status}
-                subText={a.availability}
+                subText={a.availability + "(Availability)"}
               ></DetailLabel>
 
               <PriceInfo amount={a.price} />

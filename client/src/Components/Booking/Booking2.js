@@ -5,20 +5,17 @@ import endPointObj from "../../endPointObj";
 import { useHistory, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import "./booking2.css";
-//import "./bootstrap.min.css";
-//import "./style.css";
+
 
 function Booking2(props) {
   const [alert, setAlert] = useState("");
-  const handleSubmit = (userdata) => {};
+  const [payment, setPayment] = useState("CARD")
+  const handleSubmit = (userdata) => { };
   const parsedInfo = JSON.parse(sessionStorage.getItem("selectFlight"));
   const [cardName, setcardname] = useState("");
   const [expiryDate, setexpiryDate] = useState("");
   const [cvv, setcvv] = useState("");
   const history = useHistory();
-  //-----------------------------const flightId = req.body.flightId;
-  //gonna pass to booking api
-  //const userId = localStorage.getItem('userId');
   const userId = localStorage.getItem("userId");
   const useremail = localStorage.getItem("email_current");
   const flightDate = parsedInfo.start_date;
@@ -28,7 +25,7 @@ function Booking2(props) {
   const newDate = year + "-" + month + "-" + day;
   const bookingDate = new Date();
   console.log(bookingDate);
-  console.log(bookingDate.toISOString().slice(0, 10));
+  console.log(bookingDate.toISOString().slice(0, 10))
   const day1 = new Date(bookingDate).getUTCDate();
   console.log(day1);
   const month1 = new Date(bookingDate).getUTCMonth() + 1;
@@ -53,12 +50,17 @@ function Booking2(props) {
     });
   };
 
+
+
   const state = {
     operation: "flight",
     flightObject: "",
     userDetails: "",
     paymentDetails: "",
     billingAddress: "",
+
+
+
     baseprice: 0,
   };
 
@@ -200,31 +202,66 @@ function Booking2(props) {
     return <div>{travelers}</div>;
   };
 
-  //booking api call
 
-  const handleAddPayment = () => {
-    return new Promise((resolve, reject) => {
-      Axios.post(endPointObj.url + "addPayment", {
-        userId,
-        cardName,
-        cvv,
-        expiryDate,
-      })
-        .then((response) => {
-          console.log(response);
-          setAlert("Payment added successfully");
-          sessionStorage.setItem("paymentId", response.data.paymentId);
+
+  const handleAddPayment = (flag) => {
+
+    if (flag === "card") {
+      var payingFromPoints = "0"
+      return new Promise((resolve, reject) => {
+        Axios.post(endPointObj.url + "addPayment", {
+          userId,
+          cardName,
+          cvv,
+          expiryDate,
+          payingFromPoints,
+          price
         })
-        .catch((e) => {
-          if (e.response && e.response.data) {
-            console.log(e.response.data.message);
-            setAlert(e.response.data.message);
-          }
-        });
-    });
+          .then((response) => {
+            console.log(response);
+            setAlert("Payment added successfully");
+            sessionStorage.setItem("paymentId", response.data.paymentId)
+          })
+          .catch((e) => {
+            if (e.response && e.response.data) {
+              console.log(e.response.data.message);
+              setAlert(e.response.data.message);
+            }
+          });
+      });
+    } else {
+      var payingFromPoints = "1"
+      return new Promise((resolve, reject) => {
+
+        Axios.post(endPointObj.url + "addPayment", {
+          userId,
+          cardName,
+          cvv,
+          expiryDate,
+          payingFromPoints,
+          price
+        })
+          .then((response) => {
+            console.log(response);
+            //setAlert("Payment added successfully");
+            sessionStorage.setItem("paymentId", response.data.paymentId)
+          })
+          .catch((e) => {
+            if (e.response && e.response.data) {
+              console.log(e.response.data.message);
+              setAlert(e.response.data.message);
+            }
+          });
+      });
+    }
   };
   const handleFlightBooking = (userdata) => {
     console.log("In handleFlightBooking");
+
+    // console.log(userdata);
+
+    // console.log("State");
+    // console.log(this.state);
 
     //let ccpattern = /^4\d{12}$|^4\d{15}$|^5[1-5]\d{14}$/;
 
@@ -312,7 +349,7 @@ function Booking2(props) {
     return new Promise((resolve, reject) => {
       var flightDate = newDate;
       var bookingDate = newDate1;
-      var paymentId = sessionStorage.getItem("paymentId");
+      var paymentId = sessionStorage.getItem("paymentId")
       Axios.post(endPointObj.url + "bookFlight", {
         flightId,
         userId,
@@ -419,13 +456,13 @@ function Booking2(props) {
                               <div className="fi_title color-dark-2">
                                 {end_time}
                                 <br />
-                                {newDate}
                               </div>
                             </div>
                           </div>
                         </div>
                         <br />
                         <br />
+
                       </div>
                     </div>
                   </div>
@@ -508,35 +545,69 @@ function Booking2(props) {
                           </div>
                         </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <hr />
+                        <strong className="color-red-3">
+                          Select Payment Option
+                        </strong>
+                        <br />
+                        <Form.Group as={Col} controlId="formGridState">
+
+                          <Form.Select placeholder="status" className="status" onChange={(e) => { setPayment(e.target.value) }}>
+
+                            <option>CARD</option>
+                            <option>MILES</option>
+                          </Form.Select>
+                        </Form.Group>
+                        <hr />
+
                         <div className="col-sm-12">
-                          <hr />
-                          <h5>
-                            <strong className="color-red-3">
-                              Card Details
-                            </strong>
-                          </h5>
-                          <br />
-                          <div className="col-sm-6">
-                            <h6>Name on Card</h6>
-                            <input
-                              type="text"
-                              name=""
-                              className="form-control input-sm"
-                              id=""
-                              onChange={(e) => setcardname(e.target.value)}
-                            />
-                          </div>
-                          <div className="col-sm-6">
-                            <h6>Card Number</h6>
-                            <input
-                              type="text"
-                              name=""
-                              className="form-control input-sm"
-                              id=""
-                            />
-                          </div>
+
+                          {payment == 'CARD' && <div>
+                            <h5>
+                              <strong className="color-red-3">
+                                Card Details
+                              </strong>
+                            </h5>
+                            <br />
+                            <div className="col-sm-6">
+                              <h6>Name on Card</h6>
+                              <input
+                                type="text"
+                                name=""
+                                className="form-control input-sm"
+                                id=""
+                                onChange={(e) => setcardname(e.target.value)}
+                              />
+                            </div>
+                          </div>}
+                          {payment == 'CARD' &&
+                            <div className="col-sm-6">
+                              <h6>Card Number</h6>
+                              <input
+                                type="text"
+                                name=""
+                                className="form-control input-sm"
+                                id=""
+                              />
+                            </div>}
                         </div>
-                        <div className="col-sm-12">
+                        {payment == 'CARD' && <div className="col-sm-12">
                           <div className="col-sm-6">
                             <h6>Valid Through</h6>
                             <input
@@ -557,31 +628,33 @@ function Booking2(props) {
                               onChange={(e) => setcvv(e.target.value)}
                             />
                           </div>
-                          <div className="col-sm-12">
                           <div className="col-sm-4">
-
                             <button
                               className="book add-payment"
                               type="button"
-                              onClick={handleAddPayment}
+                              onClick={() => handleAddPayment("card")}
                             >
                               ADD PAYMENT
                             </button>
 
                             {alert.length > 0 && (
-                              <Alert
-                                className="alert-payment"
-                                key="0"
-                                variant="success"
-                              >
+                              <Alert className="alert-payment" key="0" variant="success">
                                 {alert}
                               </Alert>
                             )}
                           </div>
-                         <br/>
-                         <br/>
-                         <br/>
-                          <div className="col-sm-4">
+                        </div>}
+
+                        {payment != 'CARD' && <div className="col-sm-12"> <button
+                          className="book add-payment"
+                          type="button"
+                          onClick={() => handleAddPayment("miles")}
+                        >PAY VIA MILES</button></div>}
+
+                        <br />
+                        <br />
+                        <div className="col-sm-12">
+                          <div className="col-sm-6">
                             <Button
                               className="book"
                               type="button"
@@ -593,10 +666,6 @@ function Booking2(props) {
 
                           {/* <AlertContainer ref={a => this.msg = a} {...alertOptions}/> */}
                         </div>
-
-                        </div>
-
-                  
                       </div>
                     </div>
                   </div>
@@ -672,5 +741,7 @@ function Booking2(props) {
     </div>
   );
 }
+
+//if you need anything from state to use here
 
 export default Booking2;
