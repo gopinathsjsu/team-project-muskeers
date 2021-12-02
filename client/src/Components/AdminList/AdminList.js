@@ -43,10 +43,12 @@ function AdminList(props) {
                     <ListGroup.Item key={a.flight_id} value={a.flight_id}>
                         <Row>
                             <Col xs={10}>
-                                flightId: {a.flight_id} &nbsp;
-                                source: {a.source_city} &nbsp;
-                                destination: {a.source_city} &nbsp;
-                                time: {a.start_time} &nbsp;
+                                <b>Flight ID</b>: {a.flight_id} &nbsp;
+                                <b>Source</b>: {a.source_city} &nbsp;
+                                <b>destination</b>: {a.source_city} &nbsp;
+                                <b>time</b>: {a.start_time} &nbsp;
+                                <b>Date</b>: {a.start_date.substring(0,10)} &nbsp;
+
                             </Col>
                             <Col xs={2}>
 
