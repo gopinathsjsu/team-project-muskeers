@@ -74,6 +74,9 @@ Below listed are decisions/use cases considered for features provided by the onl
 5. View Bookings
 6. Cancel Bookings
 
+
+![](documentation/SaiNikhilYandamuri.PNG)
+
 ## Sprint Sheet
 https://github.com/gopinathsjsu/team-project-muskeers/blob/master/documentation/Sprint%20Sheet.xlsx
 
