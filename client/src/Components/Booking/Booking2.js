@@ -649,11 +649,21 @@ function Booking2(props) {
                           </div>
                         </div>}
 
-                        {payment != 'CARD' && <div className="col-sm-12"> <button
+                        {payment != 'CARD' && <div><div className="col-sm-12"> <button
                           className="book add-payment"
                           type="button"
                           onClick={() => handleAddPayment("miles")}
-                        >PAY VIA MILES</button></div>}
+                        >PAY VIA MILES</button></div>
+
+                        {alert.length > 0 && (
+                          <Alert
+                            className="alert-payment"
+                            key="0"
+                            variant="primary"
+                          >
+                            {alert}
+                          </Alert>
+                        )}</div>}
 
                         <br />
                         <br />
