@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NavBar from 'react-bootstrap/NavBar';
+import NavBar from 'react-bootstrap/Navbar';
 import { Container, Nav, Dropdown } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import "./NavBarLoggedIn.css"

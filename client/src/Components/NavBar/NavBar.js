@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from 'react-bootstrap/NavBar';
+import NavBar from 'react-bootstrap/Navbar';
 import { Container, Button } from 'react-bootstrap';
 import "./NavBar.css"
 import { useHistory } from 'react-router-dom';
