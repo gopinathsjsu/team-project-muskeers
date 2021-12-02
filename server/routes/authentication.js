@@ -20,7 +20,8 @@ router.post("/signup", (req,res)=>{
                         res.status(409).json({message:"User already exists!"});
                     }
                 }else{
-                    res.status(200).json({name: name, email: email, role: role});
+                    console.log(result);
+                    res.status(200).json({userId: result.insertId, name: name, email: email, role: role});
                 }
             })
         })

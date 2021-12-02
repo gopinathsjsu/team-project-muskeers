@@ -560,6 +560,21 @@ function Booking2(props) {
                         </div>
                         </Col>
                         </Row>
+
+                        <hr />
+                        <strong className="color-red-3">
+                          Select Payment Option
+                        </strong>
+                        <br />
+                        <Form.Group as={Col} controlId="formGridState">
+
+                          <Form.Select placeholder="status" className="status" onChange={(e) => { setPayment(e.target.value); setAlert("") }}>
+
+                            <option>CARD</option>
+                            <option>MILES</option>
+                          </Form.Select>
+                        </Form.Group>
+                        <hr />
                         <div className="col-sm-12">
 
                           {payment == 'CARD' && <div>
