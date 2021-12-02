@@ -75,6 +75,8 @@ Below listed are decisions/use cases considered for features provided by the onl
 6. Cancel Bookings
 
 
+![](documentation/KaranPinakinbhaiJariwala.jpeg)
+
 ![](documentation/SaiNikhilYandamuri.PNG)
 
 ## Sprint Sheet
