@@ -94,9 +94,11 @@ Below listed are decisions/use cases considered for features provided by the onl
 # Sprint Journal:
 ![](documentation/KaranPinakinbhaiJariwala.jpeg)
 
+![](documentation/AlihussainLadiwala.PNG)
+
 ![](documentation/SaiNikhilYandamuri.PNG)
 
-![](documentation/AlihussainLadiwala.PNG)
+
 
 ## Sprint Sheet
 https://github.com/gopinathsjsu/team-project-muskeers/raw/master/documentation/Sprint%20Sheet%20202.xlsx
