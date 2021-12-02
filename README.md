@@ -39,6 +39,14 @@
 # Deplyment Diagram:
 ![](documentation/DeploymentDiagram.jpeg)
 
+# Deplyment Diagram:
+* Created 2 instances and deployed application on both of them.
+![](documentation/ec2instances.jpeg)
+
+* Created load balancer and added those 2 instances in it.
+![](documentation/loadBalancer.jpeg)
+
+
 # Extreme programming (XP) Core Values Implemented:
 * Simplicity
   * We used a critical eye to determine the most important aspects of the project scope and only did what was required.
