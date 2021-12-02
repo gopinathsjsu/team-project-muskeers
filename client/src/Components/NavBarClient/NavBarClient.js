@@ -9,7 +9,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import profilelogo from './../../assets/iconavatar.png';
 
 
 const StyledMenu = withStyles({
@@ -91,10 +90,6 @@ function NavBarClient(props) {
                     </Nav>
                     <div>
                     <div>
-                        {/* <div className="login-signup-div">
-                        <Button variant="primary" onClick={()=>{redirectLogout()}}>LogOut</Button> &nbsp;
-                        <Button variant="primary" onClick={()=>{redirect("/UserProfile")}}>Profile</Button>
-                    </div> */}
                         <Button
                             aria-controls="customized-menu"
                             aria-haspopup="true"

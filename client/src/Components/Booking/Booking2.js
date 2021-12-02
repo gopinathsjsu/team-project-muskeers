@@ -5,25 +5,7 @@ import endPointObj from "../../endPointObj";
 import { useHistory, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import "./booking2.css";
-//import {connect} from "react-redux"
-
-// import {booking_success} from "../../actions";
-
-// import {doLogout} from "../../api/user/API_HandleLogout";
-// import {getFlightDetails} from "../../api/user/API_GetDetailsforPayment";
-// import {getUserDetails} from "../../api/user/API_GetUserDetails";
-// import {bookFlight} from "../../api/user/API_BookFlight";
-// import {insertTravelerDetails} from "../../api/user/API_InsertTravelerDetails";
-
-//import AlertContainer from 'react-alert';
-//import {alertOptions, showAlert} from "../../alertConfig";
-
-//import Traveler from './Traveler';
-//import Thankyou from './Thankyou';
-
 //import "./bootstrap.min.css";
-//import './jquery-ui.min.css'
-// import './jquery-ui.structure.min.css'
 //import "./style.css";
 
 function Booking2(props) {
@@ -41,33 +23,29 @@ function Booking2(props) {
   const useremail = localStorage.getItem("email_current");
   const flightDate = parsedInfo.start_date;
   const day = new Date(flightDate).getUTCDate();
-  const month = new Date(flightDate).getUTCMonth() +1 ;
+  const month = new Date(flightDate).getUTCMonth() + 1;
   const year = new Date(flightDate).getUTCFullYear();
   const newDate = year + "-" + month + "-" + day;
   const bookingDate = new Date();
   console.log(bookingDate);
-  console.log(bookingDate.toISOString().slice(0, 10))
+  console.log(bookingDate.toISOString().slice(0, 10));
   const day1 = new Date(bookingDate).getUTCDate();
   console.log(day1);
-  const month1 = new Date(bookingDate).getUTCMonth() +1 ;
+  const month1 = new Date(bookingDate).getUTCMonth() + 1;
   console.log(month1);
   const year1 = new Date(bookingDate).getUTCFullYear();
   const newDate1 = year1 + "-" + month1 + "-" + day1;
   console.log(newDate1);
   const price = parsedInfo.price;
   const flightId = parsedInfo.flight_id;
-  //const paymentId = "4";
-  //  const paymentID = "4"; ????//passing unique to the backend
 
-  //------------------------------
-  //needed
   const flightNoofPassengers = sessionStorage.getItem("noofpassengers");
   const source = parsedInfo.source_city;
   const destination = parsedInfo.destination_city;
   const flightOperator = "Quatar";
   const startTime = parsedInfo.start_time;
   const end_time = parsedInfo.end_time;
-  const startDate = parsedInfo.start_date;
+  //const startDate = parsedInfo.start_date;
 
   const redirect = () => {
     history.push({
@@ -75,28 +53,12 @@ function Booking2(props) {
     });
   };
 
-  //--------
-  //gonna pass to addpayment api
-  //   const userId ="";
-  //   const bookingId =""; // how will i get bookingId
-  //   const cardName = "";
-  //   const expiryDate ="";
-  //   const cvv = "";
-
   const state = {
     operation: "flight",
     flightObject: "",
     userDetails: "",
     paymentDetails: "",
     billingAddress: "",
-
-    // flightId: this.props.flightId,
-    // noofpassengers: this.props.flightNoofPassengers,
-    // flight_class: this.props.flightClass,
-    // trip_type: this.props.flightTripType,
-    // fromDate: this.props.flightFromDate,
-    // toDate: this.props.flightToDate,
-
     baseprice: 0,
   };
 
@@ -238,91 +200,6 @@ function Booking2(props) {
     return <div>{travelers}</div>;
   };
 
-  useEffect(() => {
-    let flightId = {
-      // id: this.state.flightId
-    };
-
-    // console.log(flightId);
-    // console.log(this.state.flightId);
-    // console.log(this.props.flightId);
-    // getFlightDetails(flightId)
-    //     .then(res => {
-    //         if (res.status === 200) {
-    //             res.json()
-    //                 .then(data => {
-
-    //                     console.log("Length : " + data.classes.length);
-    //                     console.log("Sample : " + data.classes[0].classType);
-
-    //                     for (let j = 0; j < data.classes.length; j++) {
-    //                         if (this.state.flight_class === data.classes[j].classType) {
-    //                             this.setState({
-    //                                 ...this.state,
-    //                                 baseprice: data.classes[j].price
-    //                             });
-    //                         }
-    //                     }
-
-    //                     console.log("Base price : " + this.state.baseprice);
-
-    //                     this.visit_flag = true;
-    //                     console.log(this.visit_flag);
-    //                     getUserDetails()
-    //                         .then(res => {
-    //                             if (res.status === 200) {
-
-    //                                 res.json()
-    //                                     .then(userdata => {
-
-    //                                         console.log(userdata);
-    //                                         console.log(userdata.paymentDetails);
-
-    //                                         this.setState({
-    //                                             ...this.state,
-    //                                             flightObject: data,
-    //                                             userDetails: userdata.userDetails[0],
-    //                                             paymentDetails: ( userdata.paymentDetails === undefined || userdata.paymentDetails.length === 0) ? null : userdata.paymentDetails[0],
-    //                                             billingAddress: (userdata.billingAddress === undefined || userdata.billingAddress.length === 0) ? null : userdata.billingAddress[0]
-    //                                         });
-
-    //                                         if (userdata.paymentDetails !== undefined) {
-    //                                             this.payment_details.nameoncard = userdata.paymentDetails.nameoncard;
-    //                                             this.payment_details.username = userdata.paymentDetails.username;
-    //                                             this.payment_details.creditCardnumber = userdata.paymentDetails.creditCardNumber;
-    //                                             this.payment_details.validThrough = userdata.paymentDetails.validThrough;
-    //                                             this.payment_details.cvv = userdata.paymentDetails.cvv;
-    //                                         }
-
-    //                                         console.log(this.state);
-
-    //                                         //Setting all values of flight_payment state
-    //                                         this.flight_payment.flightId = this.state.flightId;
-    //                                         this.flight_payment.noOfPassengers = this.props.flightNoofPassengers;
-    //                                         this.flight_payment.flightClass = this.state.flight_class;
-    //                                         this.flight_payment.tripType = this.state.trip_type;
-    //                                         this.flight_payment.fromDate = this.state.fromDate;
-    //                                         this.flight_payment.toDate = this.state.toDate;
-    //                                         this.flight_payment.ticketPrice = this.state.baseprice;
-    //                                         this.flight_payment.totalAmount = this.state.baseprice * this.props.flightNoofPassengers * 1.09;
-    //                                         this.flight_payment.username = this.state.userDetails.username;
-
-    //                                         console.log("Host ID : " + this.state.flightObject.hostId);
-    //                                         this.flight_payment.hostId = this.state.flightObject.hostId;
-    //                                     });
-
-    //                             } else {
-    //                                 console.log("error in getting list");
-    //                             }
-    //                         });
-    //                     // console.log("AAaj");
-    //                     //this.props.hotelList_Success(data);
-    //                 });
-    //         } else {
-    //             console.log("error in getting list");
-    //         }
-    //     });
-  }, []);
   //booking api call
 
   const handleAddPayment = () => {
@@ -336,7 +213,7 @@ function Booking2(props) {
         .then((response) => {
           console.log(response);
           setAlert("Payment added successfully");
-          sessionStorage.setItem("paymentId", response.data.paymentId)
+          sessionStorage.setItem("paymentId", response.data.paymentId);
         })
         .catch((e) => {
           if (e.response && e.response.data) {
@@ -348,11 +225,6 @@ function Booking2(props) {
   };
   const handleFlightBooking = (userdata) => {
     console.log("In handleFlightBooking");
-
-    // console.log(userdata);
-
-    // console.log("State");
-    // console.log(this.state);
 
     //let ccpattern = /^4\d{12}$|^4\d{15}$|^5[1-5]\d{14}$/;
 
@@ -440,7 +312,7 @@ function Booking2(props) {
     return new Promise((resolve, reject) => {
       var flightDate = newDate;
       var bookingDate = newDate1;
-      var paymentId = sessionStorage.getItem("paymentId")
+      var paymentId = sessionStorage.getItem("paymentId");
       Axios.post(endPointObj.url + "bookFlight", {
         flightId,
         userId,
@@ -527,7 +399,7 @@ function Booking2(props) {
                               <div className="fi_title color-dark-2">
                                 {startTime}
                                 <br />
-                                {startDate}
+                                {newDate}
                               </div>
                             </div>
                           </div>
@@ -547,17 +419,13 @@ function Booking2(props) {
                               <div className="fi_title color-dark-2">
                                 {end_time}
                                 <br />
+                                {newDate}
                               </div>
                             </div>
                           </div>
                         </div>
                         <br />
                         <br />
-                        {/*<button className="btn btn-primary" onClick={() => {*/}
-                        {/*this.props.history.push("/UserPaymentDetails");*/}
-                        {/*}}>*/}
-                        {/*View more ...*/}
-                        {/*</button>*/}
                       </div>
                     </div>
                   </div>
@@ -642,233 +510,6 @@ function Booking2(props) {
 
                         <div className="col-sm-12">
                           <hr />
-
-                          <h4>
-                            <strong className="color-red-3">
-                              Enter Traveler Details (must be an adult)
-                            </strong>
-                          </h4>
-
-                          <div className="help-contact">
-                            <h6>
-                              Logged in as :
-                              <span className="color-red-3"> {useremail}</span>
-                            </h6>
-                          </div>
-                        </div>
-
-                        {add_travelers()}
-
-                        <div className="col-sm-12">
-                          <hr />
-
-                          <h5>
-                            <strong className="color-red-3">
-                              Secure flight information required by the airline
-                            </strong>
-                          </h5>
-
-                          <br />
-
-                          <div className="col-sm-8">
-                            <h6>Date of Birth</h6>
-
-                            <input
-                              type="text"
-                              name=""
-                              className="form-control input-sm"
-                              id=""
-                            />
-                          </div>
-                          <div className="col-sm-4">
-                            <h6>Gender</h6>
-                            <input
-                              type="text"
-                              name=""
-                              className="form-control input-sm"
-                              id=""
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-sm-12">
-                          <hr />
-                          <h5>
-                            <strong className="color-red-3">
-                              Travel Options
-                            </strong>
-                            <small>(optional)</small>
-                          </h5>
-                          <h6>
-                            <small>Recommended: Trip Protection</small>
-                          </h6>
-                        </div>
-
-                        <div className="col-sm-12">
-                          <div className="radio">
-                            <h6>
-                              <label>
-                                <input type="radio" name="optradio" />
-                                <strong>Yes</strong>
-                                <small>
-                                  <br />
-                                  1. 100% Trip Cancellation and Trip
-                                  Interruption Protection reimburses for
-                                  cancellations due to reasons like covered
-                                  illness, injury and more
-                                  <br />
-                                  2. $20,000 Emergency Medical Coverage
-                                  <br />
-                                  3. $100,000 Emergency Medical Transportation
-                                  <br />
-                                  4. Travel Delay provides reimbursement for
-                                  meals and accommodation expenses when a trip
-                                  is delayed
-                                  <br />
-                                  5. 24/7 Live Emergency Hotline Help offers a
-                                  broad range of services in the event of a
-                                  travel or medical emergency including: medical
-                                  referral and monitoring, legal assistance,
-                                  arrangement of medical evacuations or
-                                  repatriations and pre-trip assistance
-                                  <br />
-                                  6. Concierge provides information about your
-                                  destination before you travel and can help you
-                                  select restaurants, reserve golf tee times or
-                                  secure tickets to local events
-                                  <br />
-                                  7. Protect your travel investment with
-                                  valuable Allianz Travel Insurance.
-                                </small>
-                              </label>
-                            </h6>
-                          </div>
-                          <div className="radio">
-                            <h6>
-                              <label>
-                                <input type="radio" name="optradio" />
-                                No,
-                                <small>
-                                  {" "}
-                                  I understand by declining protection I am
-                                  responsible for all cancellation fees and
-                                  delay expenses.
-                                  <br />
-                                  Recommended by AGA Service Company, the
-                                  licensed producer and administrator of this
-                                  plan.
-                                  <br />
-                                  Insurance benefits are underwritten by either
-                                  BCS Insurance Company or Jefferson Insurance
-                                  Company, depending on insured's state of
-                                  residence. Terms, conditions and exclusions
-                                  apply.
-                                </small>
-                              </label>
-                            </h6>
-                          </div>
-                        </div>
-                        <div className="col-sm-12">
-                          <hr />
-                          <h5>
-                            <strong className="color-red-3">
-                              Enter Billing Information
-                            </strong>
-                          </h5>
-                          <h6>
-                            <small>Billing Address</small>
-                          </h6>
-                          <br />
-                          <div className="col-sm-6">
-                            <h6>
-                              Street
-                              <small>Line 1</small>
-                            </h6>
-                            <input
-                              type="text"
-                              name=""
-                              className="form-control input-sm"
-                              id=""
-                              onChange={(event) => {
-                                this.billing_address.street1 =
-                                  event.target.value;
-                              }}
-                            />
-                          </div>
-                          <div className="col-sm-6">
-                            <h6>
-                              Street
-                              <small>Line 2</small>
-                            </h6>
-                            <input
-                              type="text"
-                              name=""
-                              className="form-control input-sm"
-                              id=""
-                              onChange={(event) => {
-                                this.billing_address.street2 =
-                                  event.target.value;
-                              }}
-                            />
-                          </div>
-                        </div>
-                        <div className="col-sm-12">
-                          <div className="col-sm-6">
-                            <h6>Postal Code</h6>
-                            <input
-                              type="text"
-                              name=""
-                              className="form-control input-sm"
-                              id=""
-                              onChange={(event) => {
-                                this.billing_address.postalcode =
-                                  event.target.value;
-                              }}
-                            />
-                          </div>
-                          <div className="col-sm-6">
-                            <h6>City</h6>
-                            <input
-                              type="text"
-                              name=""
-                              className="form-control input-sm"
-                              id=""
-                              onChange={(event) => {
-                                this.billing_address.city = event.target.value;
-                              }}
-                            />
-                          </div>
-                        </div>
-                        <div className="col-sm-12">
-                          <div className="col-sm-6">
-                            <h6>State/Region</h6>
-                            <input
-                              type="text"
-                              name=""
-                              className="form-control input-sm"
-                              id=""
-                              onChange={(event) => {
-                                this.billing_address.state = event.target.value;
-                              }}
-                            />
-                          </div>
-                          <div className="col-sm-6">
-                            <h6>Country</h6>
-                            <input
-                              type="text"
-                              name=""
-                              className="form-control input-sm"
-                              id=""
-                              onChange={(event) => {
-                                this.billing_address.country =
-                                  event.target.value;
-                              }}
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-sm-12">
-                          <hr />
                           <h5>
                             <strong className="color-red-3">
                               Card Details
@@ -916,7 +557,9 @@ function Booking2(props) {
                               onChange={(e) => setcvv(e.target.value)}
                             />
                           </div>
+                          <div className="col-sm-12">
                           <div className="col-sm-4">
+
                             <button
                               className="book add-payment"
                               type="button"
@@ -926,49 +569,19 @@ function Booking2(props) {
                             </button>
 
                             {alert.length > 0 && (
-                              <Alert className="alert-payment" key="0" variant="success">
+                              <Alert
+                                className="alert-payment"
+                                key="0"
+                                variant="success"
+                              >
                                 {alert}
                               </Alert>
                             )}
                           </div>
-                        </div>
-                        <div className="col-sm-12">
-                          <hr />
-                          <h5>
-                            <strong className="color-red-3">
-                              Review Policies and Terms & Conditions
-                            </strong>
-                            <small>(optional)</small>
-                          </h5>
-                          <br />
-                          <h6>Cancellation and Change Policy Information</h6>
-                          <h6>
-                            <small>Policy Information goes here</small>
-                          </h6>
-                          <br />
-                          <h6>Additional Terms & Conditions</h6>
-                          <h6>
-                            <small>Terms and Conditions goes here</small>
-                          </h6>
-                          <br />
-                          <h5>
-                            By clicking <strong>"Book"</strong> you agree to the
-                            airline's fare rules and KAYAK's Terms and
-                            Conditions and Privacy Policy. JustFly's Terms of
-                            Use and Privacy Policy also apply.
-                          </h5>
-
-                          <div className="checkbox">
-                            <h6>
-                              <label>
-                                <input type="checkbox" />
-                                <strong>Email me new deals</strong>
-                              </label>
-                            </h6>
-                          </div>
-                        </div>
-                        <div className="col-sm-12">
-                          <div className="col-sm-6">
+                         <br/>
+                         <br/>
+                         <br/>
+                          <div className="col-sm-4">
                             <Button
                               className="book"
                               type="button"
@@ -980,6 +593,10 @@ function Booking2(props) {
 
                           {/* <AlertContainer ref={a => this.msg = a} {...alertOptions}/> */}
                         </div>
+
+                        </div>
+
+                  
                       </div>
                     </div>
                   </div>
@@ -1004,7 +621,7 @@ function Booking2(props) {
                         <h6>
                           {startTime}
                           <br />
-                          {startDate}
+                          {newDate}
                         </h6>
                         <h6>
                           {end_time}
@@ -1055,7 +672,5 @@ function Booking2(props) {
     </div>
   );
 }
-
-//if you need anything from state to use here
 
 export default Booking2;
