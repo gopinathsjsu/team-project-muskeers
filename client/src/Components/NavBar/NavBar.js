@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from 'react-bootstrap/NavBar';
+// import NavBar from 'react-bootstrap/NavBar';
 import { Container, Button } from 'react-bootstrap';
 import "./NavBar.css"
 import { useHistory } from 'react-router-dom';
@@ -22,7 +22,7 @@ function Navigation(props) {
 
     return (
         <div>
-            <NavBar bg="dark" variant="dark">
+            {/* <NavBar bg="dark" variant="dark">
                 <Container>
                     <NavBar.Brand href="#home">Airline Booking</NavBar.Brand>
                     <div className="login-signup-div">
@@ -30,7 +30,7 @@ function Navigation(props) {
                         <Button variant="primary" onClick={()=>{redirectRegister()}}>Sign up</Button>
                     </div>
                 </Container>
-            </NavBar>
+            </NavBar> */}
 
         </div>
     );
