@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Col, Button, Form, Alert } from "react-bootstrap";
+import { Col, Button, Form, Alert,Row } from "react-bootstrap";
 import Axios from "axios";
 import endPointObj from "../../endPointObj";
+import "./booking2.css";
 
 const flightNoofPassengers = sessionStorage.getItem("noofpassengers");
 let parsedInfo = JSON.parse(sessionStorage.getItem("selectFlight"));
@@ -22,6 +23,7 @@ const month = new Date(flightDate).getUTCMonth();
 const year = new Date(flightDate).getUTCFullYear();
 const newDate = year + "-" + month + "-" + day;
 const price = parsedInfo.price;
+console.log(price);
 
 
 function Thankyou() {
@@ -40,8 +42,7 @@ function Thankyou() {
         </h5>
         <h4>
           <b>
-            {source}
-            to {destination}
+          {source}&nbsp; to&nbsp;{destination}
           </b>
         </h4>
         <h5>
@@ -51,8 +52,10 @@ function Thankyou() {
             One Way - Economy - Adults : {flightNoofPassengers}
           </span>
         </h5>
-
+        
         <div className="fi_block">
+        <Row>
+          <Col>
           <div className="flight-icon col-xs-4 col10">
             <img
               className="fi_icon"
@@ -61,7 +64,10 @@ function Thankyou() {
               width="25"
               alt=""
             />
+           
+            
             <div className="fi_content">
+              
               <div className="fi_title color-dark-2">
                 <h5>Depart</h5>
               </div>
@@ -71,8 +77,9 @@ function Thankyou() {
                 {newDate}
               </div>
             </div>
-          </div>
-
+            </div>
+           </Col>
+           <Col>
           <div className="flight-icon col-xs-4 col10">
             <img
               className="fi_icon"
@@ -91,13 +98,21 @@ function Thankyou() {
               </div>
             </div>
           </div>
-          <div className="flight-icon col-xs-4 col10"></div>
+          </Col>
+          
+         
+          </Row>
         </div>
-
-        <div className="col-sm-12">
-          <h4>
+       <br/>
+        <h4>
             <strong className="color-red-3">FARE DETAILS</strong>
           </h4>
+        
+        <div>
+        <Row>
+        <Col>
+        <div className="col-sm-12">
+         
           <br />
 
           <div className="col-sm-2">
@@ -120,7 +135,10 @@ function Thankyou() {
             <h6>Total</h6>
           </div>
         </div>
-
+        </Col>
+        <Col>
+        <br/>
+        
         <div className="col-sm-12">
           <div className="col-sm-2">
             <h6>
@@ -139,6 +157,7 @@ function Thankyou() {
               <span className="color-red-3">{(price * 0.09).toFixed(2)}</span>
             </h6>
           </div>
+          <br/>
 
           <div className="col-sm-4">
             <h6>
@@ -156,6 +175,10 @@ function Thankyou() {
             </h4>
           </div>
         </div>
+        </Col>
+        </Row>
+        </div>
+        
       </div>
     );
   };

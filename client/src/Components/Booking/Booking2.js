@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Col, Form, Alert } from "react-bootstrap";
+import { Col, Form, Alert, Row } from "react-bootstrap";
 import Axios from "axios";
 import endPointObj from "../../endPointObj";
 import { useHistory, Link } from "react-router-dom";
@@ -384,6 +384,8 @@ function Booking2(props) {
                         </h5>
 
                         <div className="fi_block">
+                          <Row>
+                          <Col>
                           <div className="flight-icon col-xs-4 col10">
                             <img
                               className="fi_icon"
@@ -403,7 +405,8 @@ function Booking2(props) {
                               </div>
                             </div>
                           </div>
-                          <div className="flight-icon col-xs-4 col10"></div>
+                          </Col>
+                          <Col>
                           <div className="flight-icon col-xs-4 col10">
                             <img
                               className="fi_icon"
@@ -423,7 +426,11 @@ function Booking2(props) {
                               </div>
                             </div>
                           </div>
+                          </Col>
+                          </Row>
                         </div>
+                       
+                        
                         <br />
                         <br />
                       </div>
@@ -437,14 +444,17 @@ function Booking2(props) {
                   <div className="bg-grey-2">
                     <div className="table-view">
                       <div className="title hotel-middle cell-view">
-                        <div className="col-sm-12">
-                          <h4>
+                      <h4>
                             <strong className="color-red-3">
                               FARE DETAILS
                             </strong>
                           </h4>
+                          <Row>
+                          <Col>
+                        <div className="col-sm-12">
+                         
                           <br />
-
+                          
                           <div className="col-sm-2">
                             <h6>Adults</h6>
                           </div>
@@ -465,7 +475,11 @@ function Booking2(props) {
                             <h6>Total</h6>
                           </div>
                         </div>
-
+                        </Col>
+                        <br/>
+                        <br/>
+                        <Col>
+                        <br/>
                         <div className="col-sm-12">
                           <div className="col-sm-2">
                             <h6>
@@ -480,7 +494,7 @@ function Booking2(props) {
                               <span className="color-red-3">{price}</span>
                             </h6>
                           </div>
-
+                          <br/>
                           <div className="col-sm-2">
                             <h6>
                               <span className="color-red-3">
@@ -488,7 +502,7 @@ function Booking2(props) {
                               </span>
                             </h6>
                           </div>
-
+                         <br/>
                           <div className="col-sm-4">
                             <h6>
                               <span className="color-red-3">
@@ -507,7 +521,8 @@ function Booking2(props) {
                             </h6>
                           </div>
                         </div>
-
+                        </Col>
+                        </Row>
                         <div className="col-sm-12">
                           <hr />
                           <h5>
@@ -610,23 +625,7 @@ function Booking2(props) {
                   <div className="hotel-item style-10 bg-white">
                     <div className="table-view">
                       <div className="title hotel-middle cell-view">
-                        <h4 className="">Summary</h4>
-                        <hr />
-                        <h6>
-                          <strong className="">
-                            {flightOperator}
-                            -One Way - Economy - Adults : {flightNoofPassengers}
-                          </strong>
-                        </h6>
-                        <h6>
-                          {startTime}
-                          <br />
-                          {newDate}
-                        </h6>
-                        <h6>
-                          {end_time}
-                          <br />
-                        </h6>
+                    
 
                         <br />
                         <br />
@@ -635,10 +634,10 @@ function Booking2(props) {
                         <div className="col-md-12">
                           <div className="col-md-6">
                             <h6>
-                              {flightNoofPassengers}
+                              {flightNoofPassengers}&nbsp;
                               Adult/s, Economy
                             </h6>
-                            <h6>Taxes and Fees</h6>
+                           
                             <hr />
                             <h5>
                               <strong>TOTAL</strong>
