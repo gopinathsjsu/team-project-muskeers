@@ -32,6 +32,10 @@
 # Database Design:
 ![](documentation/database.jpg)
 
+# Component Diagram:
+![](documentation/ComponentDiagram.jpeg)
+
+
 # Deplyment Diagram:
 ![](documentation/DeploymentDiagram.jpeg)
 
