@@ -101,6 +101,9 @@ Below listed are decisions/use cases considered for features provided by the onl
 ## Sprint Sheet
 https://github.com/gopinathsjsu/team-project-muskeers/raw/master/documentation/Sprint%20Sheet%20202.xlsx
 
+# UI Screenshots
+https://github.com/gopinathsjsu/team-project-muskeers/blob/master/documentation/UI%20Screenshots.pdf
+
 # How to run the web-app:
 * Step 1: Clone the app by command " git clone https://github.com/gopinathsjsu/team-project-muskeers.git"
 * Step 2: Go to the client directory and install node modules by command "npm i OR npm install"
