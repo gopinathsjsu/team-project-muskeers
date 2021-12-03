@@ -4,7 +4,7 @@ import Axios from "axios";
 import endPointObj from "../../endPointObj";
 import "./booking2.css";
 
-const flightNoofPassengers = sessionStorage.getItem("noofpassengers");
+let flightNoofPassengers = sessionStorage.getItem("noofpassengers");
 let parsedInfo = JSON.parse(sessionStorage.getItem("selectFlight"));
 
 if (parsedInfo == undefined) {
@@ -38,6 +38,13 @@ function Thankyou() {
   };
 
   useEffect(() => {
+    let flightNoofPassengers = sessionStorage.getItem("noofpassengers");
+    let parsedInfo = JSON.parse(sessionStorage.getItem("selectFlight"));
+
+    if (parsedInfo == undefined) {
+      parsedInfo = {};
+    }
+    
     source = parsedInfo.source_city;
     destination = parsedInfo.destination_city;
     flightOperator = "Quatar";
