@@ -1,9 +1,9 @@
 const config = {
-    mysqlUser: "admin",
-    mysqlPassword: "admin123",
-    mysqlHost: "cmpe202.chiq5hzpd3sv.us-east-2.rds.amazonaws.com",
-    mysqlDatabase: "Flight_Management",
-    mysqlPort: 3306
+    mysqlUser: "",
+    mysqlPassword: "",
+    mysqlHost: "",
+    mysqlDatabase: "",
+    mysqlPort: 
 }
-
+// Enter all the above details
 module.exports = config;
